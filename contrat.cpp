@@ -1,0 +1,88 @@
+#include "contrat.h"
+#include <QSqlQuery>
+#include <QtDebug>
+#include <QSqlQueryModel>
+#include <QObject>
+
+Contrat::Contrat()
+{
+id_contrat=0; nom=" "; prenom=" "; email=" "; date_contrat=0; num_dossier=0;
+}
+
+Contrat::Contrat(int id_contrat,QString nom,QString prenom,QString email,int date_contrat,int num_dossier)
+{this->id_contrat=id_contrat;this->nom=nom;this->prenom=prenom;this->email=email;this->date_contrat=date_contrat;this->num_dossier=num_dossier;}
+int Contrat::getid_contrat(){return id_contrat;}
+QString Contrat::getnom(){return nom;}
+QString Contrat::getprenom(){return prenom;}
+QString Contrat::getemail(){return email;}
+int Contrat::getdate_contrat(){return date_contrat;}
+int Contrat::getnum_dossier(){return num_dossier;}
+void Contrat::setid_contrat(int id_contrat){this->id_contrat=id_contrat;}
+void Contrat::setnom(QString nom){this->nom=nom;}
+void Contrat::setprenom(QString prenom){this->prenom=prenom;}
+void Contrat::setemail(QString email){this->email=email;}
+void Contrat::setdate_contrat(int date_contrat){this->date_contrat=date_contrat;}
+void Contrat::setnum_dossier(int num_dossier){this->num_dossier=num_dossier;}
+bool Contrat::ajouter()
+{
+    QSqlQuery query;
+    QString id_string=QString::number(id_contrat);
+    QString date_contrat_string=QString::number(date_contrat);
+    QString num_dossier_string=QString::number(num_dossier);
+          query.prepare("INSERT INTO CONTRAT (ID_CONTRAT,NOM,PRENOM,EMAIL,DATE_CONTRAT,NUM_DOSSIER) "
+                        "VALUES (:ID_CONTRAT, :NOM, :PRENOM, :EMAIL, :DATE_CONTRAT, :NUM_DOSSIER)");
+          query.bindValue(":ID_CONTRAT",id_string);
+          query.bindValue(":NOM", nom);
+          query.bindValue(":PRENOM", prenom);
+          query.bindValue(":EMAIL", email);
+          query.bindValue(":DATE_CONTRAT", date_contrat_string);
+          query.bindValue(":NUM_DOSSIER", num_dossier_string);
+
+
+    return query.exec();
+}
+
+QSqlQueryModel * Contrat::afficher()
+{ QSqlQueryModel * model=new QSqlQueryModel();
+
+    model->setQuery("select * from CONTRAT");
+    model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_CONTRAT"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("PRENOM"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("EMAIL"));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("DATE_CONTRAT"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("NUM_DOSSIER"));
+
+    return  model;
+
+}
+
+bool Contrat::supprimer(int id_contrat){
+
+      QSqlQuery query;
+
+      QString res=QString::number(id_contrat);
+
+    query.prepare("Delete from CONTRAT where ID_CONTRAT=:ID_CONTRAT");
+
+    query.bindValue(":ID_CONTRAT", res);
+
+
+
+    return  query.exec();
+}
+
+bool Contrat::modifier(int id_contrat,QString nom,QString prenom,QString email,int date_contrat,int num_dossier){
+    QSqlQuery query;
+    QString id_contrat_string=QString::number(id_contrat);
+    QString date_contrat_string=QString::number(date_contrat);
+    QString num_dossier_string=QString::number(num_dossier);
+       query.prepare(" UPDATE CONTRAT set id_contrat=:id_contrat ,nom=:nom, prenom=:prenom ,email=:email, date_contrat=:date_contrat, num_dossier=:num_dossier where id_contrat=:id_contrat");
+       query.bindValue(":id_contrat", id_contrat_string);
+       query.bindValue(":nom", nom);
+       query.bindValue(":prenom",prenom);
+       query.bindValue(":email",email);
+       query.bindValue(":date_contrat", date_contrat_string);
+       query.bindValue(":num_dossier",num_dossier_string);
+       return query.exec();
+}
