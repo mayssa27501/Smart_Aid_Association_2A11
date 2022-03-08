@@ -13,13 +13,14 @@ class DONNEUR
 {
 public:
     DONNEUR();
-    DONNEUR(int,QString,QString,QString,QString);
+
+    DONNEUR(int,QString,QString,QString,QString, int);
     int getID_DONNEUR();
     QString getNOM();
      QString getPRENOM();
      QString getMETIER();
     QString getSEXE();
-
+int getID_TRESORIE();
 
 
      void setID_DONNEUR(int);
@@ -27,12 +28,18 @@ public:
     void setPRENOM(QString);
      void setMETIER(QString);
     void setSEXE(QString);
-     bool Ajouter();
+    void setID_TRESORIE(int);
+     bool ajouter();
      QSqlQueryModel* afficher();
+     QSqlQueryModel * triernom();
+       QSqlQueryModel * trierprenom();
+       QSqlQueryModel * trierid();
+     bool supprimer(int);
+     bool modifier(int,QString,QString,QString,QString,int);
 
 
 private:
-    int ID_DONNEUR;
+    int ID_DONNEUR ,ID_TRESORIE;
     QString NOM, PRENOM, METIER, SEXE;
 
 
@@ -42,3 +49,4 @@ private:
 
 
 #endif // DONNEUR_H
+//DONNEUR D1(aeaze);
