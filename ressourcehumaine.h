@@ -2,7 +2,7 @@
 #define RESSOURCEHUMAINE_H
 #include <QDate>
 #include <QSqlQueryModel>
-
+#include <QTableView>
 
 #include <QString>
 
@@ -16,7 +16,7 @@ public:
 
     RESSOURCE_HUMAINE();
 
-    RESSOURCE_HUMAINE(int,QString,QString,QString,QDate,int,float);
+    RESSOURCE_HUMAINE(int,QString,QString,QString,QDate,int,float,int,int,int);
 
     int getCIN();
 
@@ -31,6 +31,12 @@ public:
      int getTEL();
 
     float getSALAIRE();
+
+    int getID_TRESORIE();
+
+    int getID_STOCK();
+
+    int getCIN_DIRIGEANT();
 
 
      void setCIN(int);
@@ -47,12 +53,20 @@ public:
 
     void setSALAIRE(float);
 
+    void setID_TRESORIE(int);
+
+     void setID_STOCK(int);
+
+    void setCIN_DIRIGEANT(int);
+
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(int);
-    bool modifier(int,QString,QString,QString,QDate,int,float);
-
-
+    bool modifier(int,QString,QString,QString,QDate,int,float,int,int,int);
+    QSqlQueryModel * triercin();
+QSqlQueryModel * trierdate();
+QSqlQueryModel * triersalaire();
+void recherche(QTableView * tabl, int,QString,QString);
 
 
 private:
@@ -66,6 +80,8 @@ private:
     int TEL;
 
     float SALAIRE;
+
+    int ID_TRESORIE,ID_STOCK,CIN_DIRIGEANT;
 };
 
 #endif // RESSOURCEHUMAINE_H
