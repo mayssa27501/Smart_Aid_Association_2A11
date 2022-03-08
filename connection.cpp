@@ -1,5 +1,6 @@
 #include "connection.h"
 //test
+
 Connection::Connection()
 {
 
@@ -15,6 +16,7 @@ db.setPassword("ferchichi");//inserer mot de passe de cet utilisateur
 
 if (db.open())
 test=true;
+
 
 
 

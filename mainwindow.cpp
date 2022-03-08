@@ -5,6 +5,7 @@
 #include <QMainWindow>
 
 
+
 Contrat C;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),

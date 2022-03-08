@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QDate>
 
+
 class Contrat
 {
 public:
@@ -30,6 +31,7 @@ public:
     QSqlQueryModel *afficher();
     bool supprimer(int);
     bool modifier(int,QString,QString,QString,QDate,int,int);
+
 
 private:
     int id_contrat;

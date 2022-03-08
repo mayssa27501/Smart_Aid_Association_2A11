@@ -5,6 +5,7 @@
 #include <QObject>
 
 
+
 Contrat::Contrat()
 {
 id_contrat=0; nom=""; prenom=""; email=""; date_contrat=QDate::currentDate();; cin_employe=0; num_dossier=0;

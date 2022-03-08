@@ -244,7 +244,8 @@ color: rgb(226, 27, 27);</string>
         </rect>
        </property>
        <property name="styleSheet">
-        <string notr="true">color:rgb(0, 0, 0);</string>
+        <string notr="true">color:rgb(0, 0, 0);
+font:15px;</string>
        </property>
       </widget>
       <widget class="QPushButton" name="pb_ajouter">
