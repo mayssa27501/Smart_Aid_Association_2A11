@@ -1,4 +1,4 @@
-#include "tresorie.h"
+#include "tresorie.h" //
 #include <QDate>
 #include <QSqlQuery>
 #include <QtDebug>
