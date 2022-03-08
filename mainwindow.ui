@@ -79,8 +79,8 @@ border-bottom:1px solid  #717072;
      <widget class="QFrame" name="frame_3">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>110</y>
+        <x>140</x>
+        <y>90</y>
         <width>381</width>
         <height>471</height>
        </rect>
@@ -235,7 +235,7 @@ border-bottom:1px solid  #717072;
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -608,7 +608,7 @@ color: rgb(0, 0, 0);</string>
        <widget class="QPushButton" name="Supp_btn">
         <property name="geometry">
          <rect>
-          <x>290</x>
+          <x>292</x>
           <y>110</y>
           <width>161</width>
           <height>31</height>
@@ -663,7 +663,7 @@ color: rgb(0, 0, 0);</string>
        <widget class="QRadioButton" name="tri_date">
         <property name="geometry">
          <rect>
-          <x>390</x>
+          <x>396</x>
           <y>40</y>
           <width>191</width>
           <height>31</height>
