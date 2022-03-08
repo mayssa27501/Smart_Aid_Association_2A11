@@ -5,32 +5,37 @@
 #include <QtSql/QSqlQueryModel>
 #include <QSqlQuery>
 #include <QMainWindow>
+#include <QDate>
 
 class Contrat
 {
 public:
     Contrat();
-    Contrat(int,QString,QString,QString,int,int);
+    Contrat(int,QString,QString,QString,QDate,int,int);
     int getid_contrat();
     QString getnom();
     QString getprenom();
     QString getemail();
-    int getdate_contrat();
+    QDate getdate_contrat();
+    int getcin_employe();
     int getnum_dossier();
     void setid_contrat(int);
     void setnom(QString);
     void setprenom(QString);
     void setemail(QString);
-    void setdate_contrat(int);
+    void setdate_contrat(QDate);
+    void setcin_employe(int);
     void setnum_dossier(int);
     bool ajouter();
     QSqlQueryModel *afficher();
     bool supprimer(int);
-    bool modifier(int,QString,QString,QString,int,int);
+    bool modifier(int,QString,QString,QString,QDate,int,int);
+
 private:
     int id_contrat;
     QString nom,prenom,email;
-    int date_contrat;
+    QDate date_contrat;
+    int cin_employe;
     int num_dossier;
 };
 

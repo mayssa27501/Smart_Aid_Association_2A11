@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2000</width>
+    <width>3000</width>
     <height>1250</height>
    </rect>
   </property>
@@ -19,18 +19,18 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>2000</width>
-      <height>1250</height>
+      <width>2001</width>
+      <height>911</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
-    <widget class="QWidget" name="tab_3">
+    <widget class="QWidget" name="tab_4">
      <attribute name="title">
-      <string>Ajouter</string>
+      <string>Tab 2</string>
      </attribute>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="label_9">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -43,7 +43,28 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap>../../Downloads/cat-black-background-background- (1).jpg</pixmap>
+       <pixmap>../Downloads/cat-black-background-background- (1).jpg</pixmap>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Ajouter</string>
+     </attribute>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>-10</x>
+        <y>-370</y>
+        <width>2000</width>
+        <height>1250</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>../Users/ASUS/Downloads/backkk.jpg</pixmap>
       </property>
      </widget>
      <widget class="QGroupBox" name="groupBox">
@@ -52,7 +73,7 @@
         <x>360</x>
         <y>30</y>
         <width>361</width>
-        <height>461</height>
+        <height>431</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -60,7 +81,7 @@
 
 font: 75 10pt &quot;Century Gothic&quot;;
 
-color: rgb(255, 255, 255);</string>
+color: rgb(226, 27, 27);</string>
       </property>
       <property name="title">
        <string>Ajouter</string>
@@ -73,6 +94,9 @@ color: rgb(255, 255, 255);</string>
          <width>101</width>
          <height>41</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(226, 27, 27);</string>
        </property>
        <property name="text">
         <string>Id_Contrat</string>
@@ -87,6 +111,9 @@ color: rgb(255, 255, 255);</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(226, 27, 27);</string>
+       </property>
        <property name="text">
         <string>Nom</string>
        </property>
@@ -99,6 +126,9 @@ color: rgb(255, 255, 255);</string>
          <width>71</width>
          <height>21</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(226, 27, 27);</string>
        </property>
        <property name="text">
         <string>Prenom</string>
@@ -113,6 +143,9 @@ color: rgb(255, 255, 255);</string>
          <height>16</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(226, 27, 27);</string>
+       </property>
        <property name="text">
         <string>Email</string>
        </property>
@@ -126,6 +159,9 @@ color: rgb(255, 255, 255);</string>
          <height>20</height>
         </rect>
        </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(226, 27, 27);</string>
+       </property>
        <property name="text">
         <string>Date_Contrat</string>
        </property>
@@ -134,10 +170,13 @@ color: rgb(255, 255, 255);</string>
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>270</y>
+         <y>320</y>
          <width>111</width>
          <height>16</height>
         </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(226, 27, 27);</string>
        </property>
        <property name="text">
         <string>Num_Dossier</string>
@@ -195,24 +234,11 @@ color: rgb(255, 255, 255);</string>
         <string notr="true">color:rgb(0, 0, 0);</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_date">
-       <property name="geometry">
-        <rect>
-         <x>160</x>
-         <y>230</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);</string>
-       </property>
-      </widget>
       <widget class="QLineEdit" name="le_numd">
        <property name="geometry">
         <rect>
          <x>160</x>
-         <y>270</y>
+         <y>310</y>
          <width>113</width>
          <height>22</height>
         </rect>
@@ -224,7 +250,7 @@ color: rgb(255, 255, 255);</string>
       <widget class="QPushButton" name="pb_ajouter">
        <property name="geometry">
         <rect>
-         <x>70</x>
+         <x>130</x>
          <y>380</y>
          <width>131</width>
          <height>31</height>
@@ -242,6 +268,48 @@ border-radius:10px;</string>
         <string>Ajouter</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_8">
+       <property name="geometry">
+        <rect>
+         <x>25</x>
+         <y>270</y>
+         <width>121</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(226, 27, 27);</string>
+       </property>
+       <property name="text">
+        <string>Cin_employe</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_cin">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>270</y>
+         <width>113</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);</string>
+       </property>
+      </widget>
+      <widget class="QDateEdit" name="date_lee">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>230</y>
+         <width>110</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color:black;</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QTableView" name="tableView">
       <property name="geometry">
@@ -249,7 +317,7 @@ border-radius:10px;</string>
         <x>160</x>
         <y>500</y>
         <width>741</width>
-        <height>401</height>
+        <height>331</height>
        </rect>
       </property>
      </widget>
@@ -283,29 +351,100 @@ border-radius:10px;</string>
         <height>28</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
+      </property>
       <property name="text">
        <string>Modifier</string>
       </property>
      </widget>
-    </widget>
-    <widget class="QWidget" name="tab_4">
-     <attribute name="title">
-      <string>Tab 2</string>
-     </attribute>
-     <widget class="QLabel" name="label_9">
+     <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>2000</width>
-        <height>1250</height>
+        <x>60</x>
+        <y>590</y>
+        <width>93</width>
+        <height>28</height>
        </rect>
       </property>
-      <property name="text">
-       <string/>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
       </property>
-      <property name="pixmap">
-       <pixmap>../../Downloads/cat-black-background-background- (1).jpg</pixmap>
+      <property name="text">
+       <string>Imprimer</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>680</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
+      </property>
+      <property name="text">
+       <string>Traduire</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="geometry">
+       <rect>
+        <x>960</x>
+        <y>690</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
+      </property>
+      <property name="text">
+       <string>Trier</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="geometry">
+       <rect>
+        <x>960</x>
+        <y>630</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
+      </property>
+      <property name="text">
+       <string>Recherche</string>
       </property>
      </widget>
     </widget>
@@ -316,7 +455,7 @@ border-radius:10px;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2000</width>
+     <width>3000</width>
      <height>26</height>
     </rect>
    </property>
