@@ -14,7 +14,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+//8888888git
 private slots:
 bool controlsaisie();
 
