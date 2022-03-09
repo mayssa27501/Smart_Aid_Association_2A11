@@ -10,6 +10,7 @@
 
 #include <QtSql/QSqlQueryModel>
 #include <QMainWindow>
+#include<QTableView>
 
 class Dossier_medical
 {
@@ -52,6 +53,7 @@ public:
   QSqlQueryModel * triernum();
   QSqlQueryModel * trierdate();
   QSqlQueryModel * triernom();
+ void recherche(QTableView * tabl, int,QString,QString);
 private:
     int num_doss;
     QString espece, maladie, nom_animal, race;

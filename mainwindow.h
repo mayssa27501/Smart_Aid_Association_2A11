@@ -33,6 +33,10 @@ bool controlsaisie();
 
     void on_tabnom_clicked();
 
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_cherche_li_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Dossier_medical DM;

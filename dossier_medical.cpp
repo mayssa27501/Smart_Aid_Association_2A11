@@ -4,6 +4,7 @@
 #include <QtDebug>
 #include<QSqlQueryModel>
 #include <QObject>
+#include <QTableView>
 Dossier_medical::Dossier_medical()
 {
      num_doss=0;
@@ -198,4 +199,21 @@ bool Dossier_medical::supprimer(int num_doss)
      model->setHeaderData(12,Qt::Horizontal,QObject::tr("ID_EMPLOYE"));
 
      return model;
+ }
+
+ void Dossier_medical::recherche(QTableView * table ,int num_doss,QString nom, QString maladie )
+ {
+     QSqlQueryModel *model= new QSqlQueryModel();
+     QString num_string=QString::number(num_doss);
+
+
+     QSqlQuery *query=new QSqlQuery;
+     query->prepare("select * from DOSSIER_MEDICAL where NUM_DOSS like '%"+num_string+"%' or NOM_ANIMAL like '%"+nom+"%' or MALADIE like '%"+maladie+"%' ;");
+
+
+     query->exec();
+     model->setQuery(*query);
+     table->setModel(model);
+     table->show();
+
  }

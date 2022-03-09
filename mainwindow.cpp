@@ -169,3 +169,26 @@ void MainWindow::on_tabnom_clicked()
 {
     ui->tabafficher->setModel(DM.triernom());
 }
+
+void MainWindow::on_cherche_li_textChanged(const QString &arg1)
+{
+    Dossier_medical DM;
+
+
+
+   int num_doss= ui->cherche_li->text().toInt();
+
+   QString nom = ui->cherche_li->text();
+
+   QString maladie = ui->cherche_li->text();
+
+   DM.recherche(ui->tabafficher,num_doss,nom,maladie);
+
+   if (ui->cherche_li->text().isEmpty())
+
+   {
+
+       ui->tabafficher->setModel(DM.afficher());
+
+   }
+}
