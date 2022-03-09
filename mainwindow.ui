@@ -373,6 +373,70 @@ border-bottom:1px solid  #717072;
         <normaloff>C:/Users/anash/Downloads/icons8-chat-30.png</normaloff>C:/Users/anash/Downloads/icons8-chat-30.png</iconset>
       </property>
      </widget>
+     <widget class="QRadioButton" name="tri_type">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>50</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>tri par type </string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="tri_date">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>110</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>tri par date</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="tri_montant">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>170</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>tri par Montant</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="cherche_li">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>230</y>
+        <width>113</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>chercher</string>
+      </property>
+     </widget>
      <zorder>label_4</zorder>
      <zorder>groupBox</zorder>
      <zorder>affiche_tab</zorder>
@@ -380,6 +444,10 @@ border-bottom:1px solid  #717072;
      <zorder>modif_btn</zorder>
      <zorder>statistique_btn</zorder>
      <zorder>pushButton</zorder>
+     <zorder>tri_type</zorder>
+     <zorder>tri_date</zorder>
+     <zorder>tri_montant</zorder>
+     <zorder>cherche_li</zorder>
     </widget>
     <widget class="QWidget" name="tab_4">
      <attribute name="title">

@@ -100,3 +100,45 @@ void MainWindow::on_modif_btn_clicked()
                                          "Click Cancel to exit."), QMessageBox::Cancel);
 
 }
+
+void MainWindow::on_tri_type_clicked()
+{
+   tresorie tr;
+   ui->affiche_tab->setModel(tr.triertype());
+}
+
+void MainWindow::on_tri_date_clicked()
+{
+    tresorie tr;
+    ui->affiche_tab->setModel(tr.trierdate());
+
+}
+
+void MainWindow::on_tri_montant_clicked()
+{
+    tresorie tr;
+    ui->affiche_tab->setModel(tr.triermontant());
+}
+
+void MainWindow::on_cherche_li_textChanged(const QString &arg1)
+{
+    tresorie tr;
+
+
+
+    int num_op= ui->cherche_li->text().toInt();
+
+    QString type = ui->cherche_li->text();
+
+    QString descriptive = ui->cherche_li->text();
+
+    tr.recherche(ui->affiche_tab,num_op,type,descriptive);
+
+    if (ui->cherche_li->text().isEmpty())
+
+    {
+
+        ui->affiche_tab->setModel(tr.afficher());
+
+    }
+}
