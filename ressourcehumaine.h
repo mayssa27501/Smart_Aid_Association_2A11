@@ -6,7 +6,7 @@
 
 #include <QString>
 
-
+//dsfdsf
 
 class RESSOURCE_HUMAINE
 
@@ -64,9 +64,9 @@ public:
     bool supprimer(int);
     bool modifier(int,QString,QString,QString,QDate,int,float,int,int,int);
     QSqlQueryModel * triercin();
-QSqlQueryModel * trierdate();
-QSqlQueryModel * triersalaire();
-void recherche(QTableView * tabl, int,QString,QString);
+    QSqlQueryModel * trierdate();
+    QSqlQueryModel * triersalaire();
+    void recherche(QTableView * tabl, int,QString,QString);
 
 
 private:

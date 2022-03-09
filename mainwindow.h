@@ -10,7 +10,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+//Dfgdf
 public:
      bool controlSaisie();
     explicit MainWindow(QWidget *parent = nullptr);

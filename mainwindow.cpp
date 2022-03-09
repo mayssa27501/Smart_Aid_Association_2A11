@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->cin_Dirgeant->setValidator(new QIntValidator(0,99999999,this));
     ui->id_tresorie->setValidator(new QIntValidator(0,99999999,this));
     ui->id_stock->setValidator(new QIntValidator(0,99999999,this));
-
+//dfggd
 
 }
 
