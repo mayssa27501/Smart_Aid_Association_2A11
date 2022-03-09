@@ -24,6 +24,13 @@ private slots:
 
     void on_pb_modifier_clicked();
 
+    void on_tr1_clicked();
+
+    void on_tr2_clicked();
+
+    void on_tr3_clicked();
+
+    void on_cherche_li_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;

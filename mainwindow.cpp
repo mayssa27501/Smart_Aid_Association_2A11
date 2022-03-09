@@ -148,3 +148,42 @@ void MainWindow::on_pb_modifier_clicked()
         msgBox.exec();
     }
 }
+
+
+void MainWindow::on_tr1_clicked()
+{
+ui->tableView->setModel(C.trierid());
+}
+
+void MainWindow::on_tr2_clicked()
+{
+ui->tableView->setModel(C.triernom());
+}
+
+void MainWindow::on_tr3_clicked()
+{
+ui->tableView->setModel(C.trierdate());
+}
+
+
+void MainWindow::on_cherche_li_textChanged(const QString &arg1)
+{
+    Contrat C;
+
+
+
+    int id_contrat= ui->cherche_li->text().toInt();
+
+    QString nom = ui->cherche_li->text();
+
+    QString prenom = ui->cherche_li->text();
+
+    C.recherche(ui->tableView,id_contrat,nom,prenom);
+
+    if (ui->cherche_li->text().isEmpty())
+
+    {
+
+        ui->tableView->setModel(C.afficher());
+}
+}

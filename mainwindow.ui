@@ -406,46 +406,62 @@ border-radius:10px;</string>
        <string>Traduire</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QRadioButton" name="tr3">
       <property name="geometry">
        <rect>
-        <x>960</x>
-        <y>690</y>
-        <width>93</width>
-        <height>28</height>
+        <x>920</x>
+        <y>540</y>
+        <width>97</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
-
-background-color: rgb(226, 27, 27);
-
-color: rgb(255, 255, 255);
-border-radius:10px;</string>
+       <string notr="true">color: rgb(226, 27, 27);</string>
       </property>
       <property name="text">
-       <string>Trier</string>
+       <string>Trie par date</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QRadioButton" name="tr2">
       <property name="geometry">
        <rect>
-        <x>960</x>
-        <y>630</y>
-        <width>93</width>
-        <height>28</height>
+        <x>920</x>
+        <y>490</y>
+        <width>97</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
-
-background-color: rgb(226, 27, 27);
-
-color: rgb(255, 255, 255);
-border-radius:10px;</string>
+       <string notr="true">color: rgb(226, 27, 27);</string>
       </property>
       <property name="text">
-       <string>Recherche</string>
+       <string>Trie par nom</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="tr1">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>440</y>
+        <width>97</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(226, 27, 27);</string>
+      </property>
+      <property name="text">
+       <string>Trie par id</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="cherche_li">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>640</y>
+        <width>113</width>
+        <height>22</height>
+       </rect>
       </property>
      </widget>
     </widget>

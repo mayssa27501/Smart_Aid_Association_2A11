@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QMainWindow>
 #include <QDate>
+#include <QTableView>
 
 
 class Contrat
@@ -31,7 +32,10 @@ public:
     QSqlQueryModel *afficher();
     bool supprimer(int);
     bool modifier(int,QString,QString,QString,QDate,int,int);
-
+    QSqlQueryModel * trierid();
+    QSqlQueryModel * triernom();
+    QSqlQueryModel * trierdate();
+    void recherche(QTableView * tabl, int,QString,QString);
 
 private:
     int id_contrat;

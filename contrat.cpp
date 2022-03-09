@@ -96,3 +96,68 @@ bool Contrat::modifier(int id_contrat,QString nom,QString prenom,QString email,Q
        query.bindValue(":NUM_DOSSIER",num_dossier_string);
        return query.exec();
 }
+
+QSqlQueryModel * Contrat::trierid()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM CONTRAT ORDER BY ID_CONTRAT");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_CONTRAT"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE_CONTRAT"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("CIN_EMPLOYE"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("NUM_DOSSIER"));
+
+
+    return model;
+}
+
+QSqlQueryModel * Contrat::triernom()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM CONTRAT ORDER BY NOM");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_CONTRAT"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE_CONTRAT"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("CIN_EMPLOYE"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("NUM_DOSSIER"));
+
+
+    return model;
+}
+
+QSqlQueryModel * Contrat::trierdate()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM CONTRAT ORDER BY DATE_CONTRAT");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("ID_CONTRAT"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("NOM"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("PRENOM"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("EMAIL"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE_CONTRAT"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("CIN_EMPLOYE"));
+    model->setHeaderData(6, Qt::Horizontal, QObject::tr("NUM_DOSSIER"));
+
+
+    return model;
+}
+
+void Contrat::recherche(QTableView * table ,int id_contrat,QString nom, QString prenom )
+{
+    QSqlQueryModel *model= new QSqlQueryModel();
+    QString id_contrat_string=QString::number(id_contrat);
+
+
+    QSqlQuery *query=new QSqlQuery;
+    query->prepare("select * from CONTRAT where ID_CONTRAT like '%"+id_contrat_string+"%' or NOM like '%"+nom+"%' or PRENOM like '%"+prenom+"%' ;");
+
+
+    query->exec();
+    model->setQuery(*query);
+    table->setModel(model);
+    table->show();
+
+}
