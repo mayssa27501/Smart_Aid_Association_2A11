@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../Downloads/Webp.net-resizeimage.jpg</file>
+    </qresource>
+</RCC>

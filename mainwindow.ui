@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1241</width>
-    <height>703</height>
+    <width>1247</width>
+    <height>715</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,6 +23,9 @@
       <height>1750</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
@@ -30,22 +33,6 @@
      <attribute name="title">
       <string>Tab 1</string>
      </attribute>
-     <widget class="QLabel" name="label_4">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>1231</width>
-        <height>621</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>../../Downloads/Webp.net-resizeimage.jpg</pixmap>
-      </property>
-     </widget>
      <widget class="QGroupBox" name="groupBox_5">
       <property name="geometry">
        <rect>
@@ -288,8 +275,8 @@ border-radius:10px;</string>
      <widget class="QLineEdit" name="le_sexe">
       <property name="geometry">
        <rect>
-        <x>318</x>
-        <y>253</y>
+        <x>319</x>
+        <y>216</y>
         <width>113</width>
         <height>20</height>
        </rect>
@@ -299,7 +286,7 @@ border-radius:10px;</string>
       <property name="geometry">
        <rect>
         <x>318</x>
-        <y>289</y>
+        <y>283</y>
         <width>113</width>
         <height>20</height>
        </rect>
@@ -512,11 +499,75 @@ font: 75 13pt &quot;Times New Roman&quot;;
        <string>chercher</string>
       </property>
      </widget>
+     <widget class="QLineEdit" name="le_num">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>40</y>
+        <width>113</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1231</width>
+        <height>641</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/Downloads/Webp.net-resizeimage.jpg);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <zorder>label_2</zorder>
+     <zorder>groupBox_5</zorder>
+     <zorder>groupBox</zorder>
+     <zorder>line</zorder>
+     <zorder>line_2</zorder>
+     <zorder>pb_ajouter</zorder>
+     <zorder>le_sexe</zorder>
+     <zorder>le_setri</zorder>
+     <zorder>tabafficher</zorder>
+     <zorder>pb_supp</zorder>
+     <zorder>le_supp</zorder>
+     <zorder>label</zorder>
+     <zorder>pb_afficher</zorder>
+     <zorder>pb_modif</zorder>
+     <zorder>line_3</zorder>
+     <zorder>line_4</zorder>
+     <zorder>trinum</zorder>
+     <zorder>tridate</zorder>
+     <zorder>tabnom</zorder>
+     <zorder>cin_emp</zorder>
+     <zorder>cherche_li</zorder>
+     <zorder>le_num</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
       <string>Tab 2</string>
      </attribute>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>1241</width>
+        <height>651</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-image: url(:/Downloads/Webp.net-resizeimage.jpg);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -541,7 +592,7 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
     <property name="geometry">
      <rect>
       <x>153</x>
-      <y>309</y>
+      <y>303</y>
       <width>101</width>
       <height>20</height>
      </rect>
@@ -555,21 +606,11 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
      <string>Stérilisation</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="le_num">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>60</y>
-      <width>113</width>
-      <height>20</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QDateEdit" name="de_date">
     <property name="geometry">
      <rect>
       <x>315</x>
-      <y>200</y>
+      <y>130</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -579,7 +620,7 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
     <property name="geometry">
      <rect>
       <x>179</x>
-      <y>243</y>
+      <y>275</y>
       <width>47</width>
       <height>14</height>
      </rect>
@@ -590,14 +631,14 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
 font: 75 15pt &quot;Times New Roman&quot;;</string>
     </property>
     <property name="text">
-     <string>Poids</string>
+     <string>Poid</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="le_race">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>165</y>
+      <x>321</x>
+      <y>204</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -606,8 +647,8 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
    <widget class="QLineEdit" name="le_poids">
     <property name="geometry">
      <rect>
-      <x>319</x>
-      <y>240</y>
+      <x>320</x>
+      <y>272</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -646,7 +687,7 @@ font: 75 15pt &quot;Times New Roman&quot;;
     <property name="geometry">
      <rect>
       <x>176</x>
-      <y>278</y>
+      <y>241</y>
       <width>51</width>
       <height>16</height>
      </rect>
@@ -664,7 +705,7 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
     <property name="geometry">
      <rect>
       <x>180</x>
-      <y>165</y>
+      <y>204</y>
       <width>47</width>
       <height>14</height>
      </rect>
@@ -682,7 +723,7 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>130</y>
+      <y>168</y>
       <width>91</width>
       <height>21</height>
      </rect>
@@ -699,8 +740,8 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
    <widget class="QLineEdit" name="le_espece">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>130</y>
+      <x>321</x>
+      <y>168</y>
       <width>113</width>
       <height>20</height>
      </rect>
@@ -710,7 +751,7 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
     <property name="geometry">
      <rect>
       <x>139</x>
-      <y>202</y>
+      <y>132</y>
       <width>151</width>
       <height>16</height>
      </rect>
@@ -748,7 +789,7 @@ font: 75 15pt &quot;Times New Roman&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1241</width>
+     <width>1247</width>
      <height>22</height>
     </rect>
    </property>

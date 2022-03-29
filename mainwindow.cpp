@@ -22,28 +22,87 @@ MainWindow::~MainWindow()
 bool MainWindow::controlsaisie(){
 
     if ( ui->le_num->text().isEmpty() ||
-         ui->le_num->text().toInt() == 0 ||
+         ui->le_num->text().toInt() == 0 )
+    { QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                 QObject::tr("numero invalide.\n"
+                                                                             "Click cancel to exit."), QMessageBox::Cancel);
+        return 0;}
+    if (
+            !(ui->le_espece->text().contains(QRegExp("^[A-Z a-z]+$"))) ) {
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                         QObject::tr("espece invalide.\n"
+                                                                                     "Click cancel to exit."), QMessageBox::Cancel);
+                return 0;
+    }
+         if(   !(ui->le_diag->text().contains(QRegExp("^[A-Za-z]+$")))){
+             QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                              QObject::tr("diagnostic invalide.\n"
+                                                                                          "Click cancel to exit."), QMessageBox::Cancel);
+                     return 0;
+         }
+           if ( !(ui->le_nom->text().contains(QRegExp("^[A-Za-z]+$"))))
+           {
+               QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                                QObject::tr("nom invalide.\n"
+                                                                                            "Click cancel to exit."), QMessageBox::Cancel);
+                       return 0;
+           }
+           if ( !(ui->le_race->text().contains(QRegExp("^[A-Za-z]+$"))))
+           {
+               QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                                QObject::tr("race invalide.\n"
+                                                                                            "Click cancel to exit."), QMessageBox::Cancel);
+                       return 0;
+           }
+           if ( !(ui->le_sexe->text().contains(QRegExp("^[A-Za-z]+$")))) {
+               QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                                QObject::tr("sexe invalide.\n"
+                                                                                            "Click cancel to exit."), QMessageBox::Cancel);
+                       return 0;
+           }
 
-            !(ui->le_espece->text().contains(QRegExp("^[A-Za-z]+$"))) || //frme mn google ( regex )
-            !(ui->le_diag->text().contains(QRegExp("^[A-Za-z]+$"))) ||
-            !(ui->le_nom->text().contains(QRegExp("^[A-Za-z]+$"))) ||
-            !(ui->le_race->text().contains(QRegExp("^[A-Za-z]+$"))) ||
-            !(ui->le_sexe->text().contains(QRegExp("^[A-Za-z]+$"))) ||
+         if (!(ui->le_setri->text().contains(QRegExp("^[A-Za-z]+$")))){
+             QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                              QObject::tr("sterilisation invalide.\n"
+                                                                                          "Click cancel to exit."), QMessageBox::Cancel);
+                     return 0;
+         }
+         if (!(ui->le_vaccn->text().contains(QRegExp("^[A-Za-z]+$")))){
+             QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                              QObject::tr("vaccin invalide.\n"
+                                                                                          "Click cancel to exit."), QMessageBox::Cancel);
+                     return 0;
+         }
+         if (!(ui->le_trait->text().contains(QRegExp("^[A-Za-z]+$")))){
+             QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                              QObject::tr("traitement invalide.\n"
+                                                                                          "Click cancel to exit."), QMessageBox::Cancel);
+                     return 0;
+         }
 
-         !(ui->le_setri->text().contains(QRegExp("^[A-Za-z]+$"))) ||
-         !(ui->le_vaccn->text().contains(QRegExp("^[A-Za-z]+$"))) ||
-         !(ui->le_trait->text().contains(QRegExp("^[A-Za-z]+$"))) ||
+         if (ui->le_poids->text().isEmpty() ||
+         ui->le_poids->text().toDouble() == 0 ){
+             QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                              QObject::tr("poid invalide.\n"
+                                                                                          "Click cancel to exit."), QMessageBox::Cancel);
+                     return 0;
+         }
 
-         ui->le_poids->text().isEmpty() ||
-         ui->le_poids->text().toDouble() == 0 ||
+         if (ui->le_temp->text().isEmpty() ||
+         ui->le_temp->text().toDouble() == 0 ){
+             QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                              QObject::tr("temperature invalide.\n"
+                                                                                          "Click cancel to exit."), QMessageBox::Cancel);
+                     return 0;
+         }
 
-         ui->le_temp->text().isEmpty() ||
-         ui->le_temp->text().toDouble() == 0 ||
-
-            ui->cin_emp->text().isEmpty() ||
-            ui->cin_emp->text().toInt() == 0 )
-        return 0;
-    else
+           if ( ui->cin_emp->text().isEmpty() ||
+            ui->cin_emp->text().toInt() == 0 ) {
+               QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                                                                QObject::tr("employee invalide.\n"
+                                                                                            "Click cancel to exit."), QMessageBox::Cancel);
+                       return 0;
+           }
         return 1;
 }
 
@@ -56,7 +115,7 @@ void MainWindow::on_pb_ajouter_clicked()
     QString nom_animal=ui->le_nom->text();
     QString race=ui->le_race->text();
     QDate date_naiss=ui->de_date->date();
-    double poids=ui->le_poids->text().toDouble();
+    double poid=ui->le_poids->text().toDouble();
     QString sexe=ui->le_sexe->text();
     double temperature=ui->le_temp->text().toDouble();
     QString sterilisation=ui->le_setri->text();
@@ -66,7 +125,7 @@ void MainWindow::on_pb_ajouter_clicked()
 
     int id_employe=ui->cin_emp->text().toInt();
 
-    Dossier_medical DM(num_doss,espece,maladie,nom_animal,race,date_naiss,poids,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
+    Dossier_medical DM(num_doss,espece,maladie,nom_animal,race,date_naiss,poid,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
 
     bool test=DM.ajouter();
             QMessageBox msgBox;
@@ -121,7 +180,7 @@ void MainWindow::on_pb_modif_clicked()
     QString nom_animal=ui->le_nom->text();
     QString race=ui->le_race->text();
     QDate date_naiss=ui->de_date->date();
-    double poids=ui->le_poids->text().toDouble();
+    double poid=ui->le_poids->text().toDouble();
     QString sexe=ui->le_sexe->text();
     double temperature=ui->le_temp->text().toDouble();
     QString sterilisation=ui->le_setri->text();
@@ -129,10 +188,10 @@ void MainWindow::on_pb_modif_clicked()
     QString traitement=ui->le_trait->text();
     int id_employe=ui->cin_emp->text().toInt();
 
-   Dossier_medical DM(num_doss,espece,maladie,nom_animal,race,date_naiss,poids,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
+   Dossier_medical DM(num_doss,espece,maladie,nom_animal,race,date_naiss,poid,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
 
 
-         bool test=DM.modifier(num_doss,espece,maladie,nom_animal,race,date_naiss,poids,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
+         bool test=DM.modifier(num_doss,espece,maladie,nom_animal,race,date_naiss,poid,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
          if(test)
        {ui->tabafficher->setModel(DM.afficher());
        QMessageBox::information(nullptr, QObject::tr("Modifier avec succées "),
@@ -191,4 +250,31 @@ void MainWindow::on_cherche_li_textChanged(const QString &arg1)
        ui->tabafficher->setModel(DM.afficher());
 
    }
+}
+
+void MainWindow::on_tabafficher_clicked(const QModelIndex &index)
+{
+    ui->le_num->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),0)).toString());
+    ui->le_nom->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),1)).toString());
+
+    QString date_string_on_db = ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),2)).toString();
+    QDate Date = QDate::fromString(date_string_on_db,"yyyy-MM-ddT00:00:00");
+    qDebug(date_string_on_db.toLatin1());
+    ui->de_date->setDate(Date);
+    //....
+ ui->le_espece->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),3)).toString());
+ ui->le_race->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),4)).toString());
+ ui->le_sexe->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),5)).toString());
+ ui->le_poids->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),6)).toString());
+
+  ui->le_diag->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),7)).toString());
+    ui->le_temp->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),8)).toString());
+    ui->le_setri->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),9)).toString());
+     ui->le_vaccn->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),10)).toString());
+     ui->le_trait->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),11)).toString());
+      ui->cin_emp->setText(ui->tabafficher->model()->data(ui->tabafficher->model()->index(index.row(),12)).toString());
+
+    // a coninuer
+
+
 }

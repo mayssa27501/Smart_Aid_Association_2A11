@@ -23,7 +23,7 @@ public:
      QString getnom_animal();
      QString getrace();
     QDate getdate_naiss();
-    double getpoids();
+    double getpoid();
      QString getsexe();
       double gettemperature();
      QString getsterilisation();
@@ -38,7 +38,7 @@ public:
      void setnom_animal(QString);
      void setrace(QString);
     void setdate_naiss(QDate);
-   void setpoids(double);
+   void setpoid(double);
      void setsexe(QString);
       void settemperature(double);
      void setsterilisation(QString);
@@ -58,7 +58,7 @@ private:
     int num_doss;
     QString espece, maladie, nom_animal, race;
     QDate date_naiss;
-    double poids;
+    double poid;
     QString sexe;
     double  temperature;
    QString sterilisation,etat_vaccin, traitement;

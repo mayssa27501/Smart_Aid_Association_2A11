@@ -13,7 +13,7 @@ Dossier_medical::Dossier_medical()
     nom_animal="";
     race="";
      date_naiss =QDate::currentDate();
-     poids=0;
+     poid=0;
      sexe="";
      temperature=0;
      sterilisation="";
@@ -23,15 +23,15 @@ Dossier_medical::Dossier_medical()
 id_employe=0;
 
 }
-Dossier_medical::Dossier_medical(int num_doss,QString espece,QString maladie,QString nom_animal,QString race,QDate date_naiss,double poids,QString sexe,double temperature,QString sterilisation,QString etat_vaccin,QString traitement,int id_employe)
-{this->num_doss=num_doss;this->espece=espece;this->maladie=maladie;this->nom_animal=nom_animal;this->race=race;this->date_naiss=date_naiss;this->poids=poids;this->sexe=sexe;this->temperature=temperature;this->sterilisation=sterilisation;this->etat_vaccin=etat_vaccin;this->traitement=traitement;this->id_employe=id_employe;}
+Dossier_medical::Dossier_medical(int num_doss,QString espece,QString maladie,QString nom_animal,QString race,QDate date_naiss,double poid,QString sexe,double temperature,QString sterilisation,QString etat_vaccin,QString traitement,int id_employe)
+{this->num_doss=num_doss;this->espece=espece;this->maladie=maladie;this->nom_animal=nom_animal;this->race=race;this->date_naiss=date_naiss;this->poid=poid;this->sexe=sexe;this->temperature=temperature;this->sterilisation=sterilisation;this->etat_vaccin=etat_vaccin;this->traitement=traitement;this->id_employe=id_employe;}
 int Dossier_medical::getnum_doss(){return num_doss;}
 QString Dossier_medical:: getespece(){return espece;}
 QString  Dossier_medical::getmaladie(){return maladie;}
 QString Dossier_medical:: getnom_animal(){return nom_animal;}
 QString Dossier_medical::getrace(){return race;}
 QDate Dossier_medical:: getdate_naiss(){return date_naiss;}
-double Dossier_medical::getpoids(){return poids;}
+double Dossier_medical::getpoid(){return poid;}
 QString Dossier_medical::getsexe(){return sexe;}
 double Dossier_medical::gettemperature(){return temperature;}
 QString Dossier_medical::getsterilisation(){return sterilisation;}
@@ -46,7 +46,7 @@ void Dossier_medical::setmaladie(QString maladie){this->maladie=maladie;}
 void Dossier_medical::setnom_animal(QString nom_animal){this->nom_animal=nom_animal;}
 void Dossier_medical::setrace(QString race){this->race=race;}
 void Dossier_medical::setdate_naiss(QDate date_naiss){this->date_naiss=date_naiss;}
-void Dossier_medical::setpoids(double poids){this->poids=poids;}
+void Dossier_medical::setpoid(double poid){this->poid=poid;}
 void Dossier_medical::setsexe(QString sexe){this->sexe=sexe;}
 void Dossier_medical::settemperature(double temperature){this->temperature=temperature;}
 void Dossier_medical::setsterilisation(QString sterilisation){this->sterilisation=sterilisation;}
@@ -59,18 +59,18 @@ bool Dossier_medical::ajouter()
 {
     QSqlQuery query;
     QString numD_string=QString::number(num_doss);
-    QString num_poids_string=QString::number(poids);
+    QString num_poid_string=QString::number(poid);
     QString num_temp_string=QString::number(temperature);
      QString id_employe_string=QString::number(id_employe);
-         query.prepare("INSERT INTO DOSSIER_MEDICAL (NUM_DOSS,ESPECE,MALADIE,NOM_ANIMAL,RACE,DATE_NAISS,POIDS,SEXE, TEMPERATURE,STERILISATION,ETAT_VACCIN,TRAITEMENT,ID_EMPLOYE) "
-                       "VALUES (:NUM_DOSS,:ESPECE,:MALADIE,:NOM_ANIMAL,:RACE,:DATE_NAISS,:POIDS,:SEXE,:TEMPERATURE,:STERILISATION, :ETAT_VACCIN,:TRAITEMENT,:ID_EMPLOYE)");
+         query.prepare("INSERT INTO DOSSIER_MEDICAL (NUM_DOSS,ESPECE,MALADIE,NOM_ANIMAL,RACE,DATE_NAISS,POID,SEXE, TEMPERATURE,STERILISATION,ETAT_VACCIN,TRAITEMENT,ID_EMPLOYE) "
+                       "VALUES (:NUM_DOSS,:ESPECE,:MALADIE,:NOM_ANIMAL,:RACE,:DATE_NAISS,:POID,:SEXE,:TEMPERATURE,:STERILISATION, :ETAT_VACCIN,:TRAITEMENT,:ID_EMPLOYE)");
          query.bindValue(":NUM_DOSS", numD_string);
          query.bindValue(":ESPECE", espece);
          query.bindValue(":MALADIE", maladie);
          query.bindValue(":NOM_ANIMAL",nom_animal);
          query.bindValue(":RACE", race);
          query.bindValue(":DATE_NAISS", date_naiss);
-         query.bindValue(":POIDS", num_poids_string);
+         query.bindValue(":POID", num_poid_string);
          query.bindValue(":SEXE", sexe);
            query.bindValue(":TEMPERATURE", num_temp_string);
          query.bindValue(":STERILISATION", sterilisation);
@@ -96,37 +96,36 @@ bool Dossier_medical::supprimer(int num_doss)
 
     model->setQuery("select * from DOSSIER_MEDICAL");
     model->setHeaderData(0,Qt::Horizontal, QObject::tr("NUM_DOSS"));
-    model->setHeaderData(1,Qt::Horizontal, QObject::tr("ESPECE"));
-    model->setHeaderData(2,Qt::Horizontal, QObject::tr("MALADIE"));
-    model->setHeaderData(3,Qt::Horizontal, QObject::tr("NOM_ANIMAL "));
+    model->setHeaderData(1,Qt::Horizontal, QObject::tr("NOM_ANIMAL "));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("DATE_NAISS"));
+    model->setHeaderData(3,Qt::Horizontal, QObject::tr("ESPECE"));
     model->setHeaderData(4,Qt::Horizontal,QObject::tr("RACE"));
-    model->setHeaderData(5,Qt::Horizontal,QObject::tr("DATE_NAISS"));
-    model->setHeaderData(6,Qt::Horizontal,QObject::tr("POIDS "));
-    model->setHeaderData(7,Qt::Horizontal,QObject::tr("SEXE"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("SEXE"));
+    model->setHeaderData(6,Qt::Horizontal,QObject::tr("POID "));
+    model->setHeaderData(7,Qt::Horizontal, QObject::tr("MALADIE"));
     model->setHeaderData(8,Qt::Horizontal,QObject::tr("TEMPERATURE"));
     model->setHeaderData(9,Qt::Horizontal,QObject::tr("STERILISATION "));
     model->setHeaderData(10,Qt::Horizontal,QObject::tr("ETAT_VACCIN"));
     model->setHeaderData(11,Qt::Horizontal,QObject::tr("TRAITEMENT"));
-
     model->setHeaderData(12,Qt::Horizontal, QObject::tr("ID_EMPLOYE"));
 
     return  model;
 
 }
- bool Dossier_medical::modifier(int num_doss,QString espece,QString maladie,QString nom_animal,QString race,QDate date_naiss,double poids,QString sexe,double temperature,QString sterilisation,QString etat_vaccin,QString traitement,int id_employe){
+ bool Dossier_medical::modifier(int num_doss,QString espece,QString maladie,QString nom_animal,QString race,QDate date_naiss,double poid,QString sexe,double temperature,QString sterilisation,QString etat_vaccin,QString traitement,int id_employe){
      QSqlQuery query;
      QString numD_string=QString::number(num_doss);
-     QString num_poids_string=QString::number(poids);
+     QString num_poid_string=QString::number(poid);
      QString num_temp_string=QString::number(temperature);
      QString id_employe_string=QString::number(id_employe);
-        query.prepare(" UPDATE DOSSIER_MEDICAL set num_doss=:NUM_DOSS ,espece=:ESPECE, maladie=:MALADIE ,nom_animal=:NOM_ANIMAL, race=:RACE, date_naiss=:DATE_NAISS,poids=:POIDS,sexe=:SEXE,temperature=:TEMPERATURE,sterilisation=:STERILISATION,etat_vaccin=:ETAT_VACCIN,traitement=:TRAITEMENT,id_employe=:ID_EMPLOYE where num_doss=:NUM_DOSS");
+        query.prepare(" UPDATE DOSSIER_MEDICAL set num_doss=:NUM_DOSS ,espece=:ESPECE, maladie=:MALADIE ,nom_animal=:NOM_ANIMAL, race=:RACE, date_naiss=:DATE_NAISS,poid=:POID,sexe=:SEXE,temperature=:TEMPERATURE,sterilisation=:STERILISATION,etat_vaccin=:ETAT_VACCIN,traitement=:TRAITEMENT,id_employe=:ID_EMPLOYE where num_doss=:NUM_DOSS");
         query.bindValue(":NUM_DOSS", numD_string);
         query.bindValue(":ESPECE", espece);
         query.bindValue(":MALADIE", maladie);
         query.bindValue(":NOM_ANIMAL",nom_animal);
         query.bindValue(":RACE", race);
         query.bindValue(":DATE_NAISS", date_naiss);
-        query.bindValue(":POIDS", num_poids_string);
+        query.bindValue(":POID", num_poid_string);
         query.bindValue(":SEXE", sexe);
           query.bindValue(":TEMPERATURE", num_temp_string);
         query.bindValue(":STERILISATION", sterilisation);
@@ -146,7 +145,7 @@ bool Dossier_medical::supprimer(int num_doss)
      model->setHeaderData(3,Qt::Horizontal, QObject::tr("NOM_ANIMAL "));
      model->setHeaderData(4,Qt::Horizontal,QObject::tr("RACE"));
      model->setHeaderData(5,Qt::Horizontal,QObject::tr("DATE_NAISS"));
-     model->setHeaderData(6,Qt::Horizontal,QObject::tr("POIDS "));
+     model->setHeaderData(6,Qt::Horizontal,QObject::tr("POID"));
      model->setHeaderData(7,Qt::Horizontal,QObject::tr("SEXE"));
      model->setHeaderData(8,Qt::Horizontal,QObject::tr("TEMPERATURE"));
      model->setHeaderData(9,Qt::Horizontal,QObject::tr("STERILISATION "));
@@ -168,7 +167,7 @@ bool Dossier_medical::supprimer(int num_doss)
      model->setHeaderData(3,Qt::Horizontal, QObject::tr("NOM_ANIMAL "));
      model->setHeaderData(4,Qt::Horizontal,QObject::tr("RACE"));
      model->setHeaderData(5,Qt::Horizontal,QObject::tr("DATE_NAISS"));
-     model->setHeaderData(6,Qt::Horizontal,QObject::tr("POIDS "));
+     model->setHeaderData(6,Qt::Horizontal,QObject::tr("POID"));
      model->setHeaderData(7,Qt::Horizontal,QObject::tr("SEXE"));
      model->setHeaderData(8,Qt::Horizontal,QObject::tr("TEMPERATURE"));
      model->setHeaderData(9,Qt::Horizontal,QObject::tr("STERILISATION "));
@@ -189,7 +188,7 @@ bool Dossier_medical::supprimer(int num_doss)
      model->setHeaderData(3,Qt::Horizontal, QObject::tr("NOM_ANIMAL "));
      model->setHeaderData(4,Qt::Horizontal,QObject::tr("RACE"));
      model->setHeaderData(5,Qt::Horizontal,QObject::tr("DATE_NAISS"));
-     model->setHeaderData(6,Qt::Horizontal,QObject::tr("POIDS "));
+     model->setHeaderData(6,Qt::Horizontal,QObject::tr("POID"));
      model->setHeaderData(7,Qt::Horizontal,QObject::tr("SEXE"));
      model->setHeaderData(8,Qt::Horizontal,QObject::tr("TEMPERATURE"));
      model->setHeaderData(9,Qt::Horizontal,QObject::tr("STERILISATION "));

@@ -33,9 +33,11 @@ bool controlsaisie();
 
     void on_tabnom_clicked();
 
-    void on_lineEdit_textChanged(const QString &arg1);
+   // void on_lineEdit_textChanged(const QString &arg1);
 
     void on_cherche_li_textChanged(const QString &arg1);
+
+    void on_tabafficher_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;
