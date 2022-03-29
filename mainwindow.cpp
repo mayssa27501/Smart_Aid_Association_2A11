@@ -1,9 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "contrat.h"
+#include "historique.h"
 #include <QMessageBox>
 #include <QMainWindow>
-
+#include<QFileDialog>
+#include<QPrinter>
+#include<QString>
+#include<QDateTime>
+#include<QTextStream>
+#include<QTextDocument>
+#include<QPrintDialog>
+#include <QSystemTrayIcon>
+#include <QTimer>
 
 
 Contrat C;
@@ -17,6 +26,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->le_cin->setValidator(new QIntValidator(10000000,99999999,this));
     ui->le_numd->setValidator(new QIntValidator(0,99999999,this));
     ui->tableView->setModel(C.afficher());
+    showtime();
+    QTimer *timer=new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(showtime()));
+    timer->start();
+}
+
+void MainWindow::showtime()
+{
+    QTime time=QTime::currentTime();
+
+    QString time_next=time.toString("hh : mm : ss");
+    ui->digital_clock->setText(time_next);
 }
 
 MainWindow::~MainWindow()
@@ -60,6 +81,7 @@ bool test=C.ajouter();
            if(test)
            {
                msgBox.setText("ajout avec succes");
+               H.saveajouter();
            msgBox.exec();
            }
            else
@@ -81,10 +103,11 @@ void MainWindow::on_pb_supp_clicked()
     int id =ui->le_id->text().toInt();
         bool test=C.supprimer(id);
 
-        if(test)
+        if(test){
+            H.savesupp();
             QMessageBox::information(nullptr, QObject::tr("ok"),
                         QObject::tr("supression effectué .\n"
-                                    "Click Ok to exit."), QMessageBox::Ok);
+                                    "Click Ok to exit."), QMessageBox::Ok);}
         else
             QMessageBox::critical(nullptr, QObject::tr("not ok"),
                         QObject::tr("échec suprresion.\n"
@@ -123,7 +146,7 @@ void MainWindow::on_pb_modifier_clicked()
       if(test)
 
     {ui->tableView->setModel(C.afficher());
-
+    H.savemodifier();
     QMessageBox::information(nullptr, QObject::tr("Modifier avec succées "),
 
                       QObject::tr("invite modifiée.\n"
@@ -153,16 +176,19 @@ void MainWindow::on_pb_modifier_clicked()
 void MainWindow::on_tr1_clicked()
 {
 ui->tableView->setModel(C.trierid());
+H.savetri1();
 }
 
 void MainWindow::on_tr2_clicked()
 {
 ui->tableView->setModel(C.triernom());
+H.savetri2();
 }
 
 void MainWindow::on_tr3_clicked()
 {
 ui->tableView->setModel(C.trierdate());
+H.savetri3();
 }
 
 
@@ -183,7 +209,89 @@ void MainWindow::on_cherche_li_textChanged(const QString &arg1)
     if (ui->cherche_li->text().isEmpty())
 
     {
-
+    H.savecher();
         ui->tableView->setModel(C.afficher());
 }
 }
+
+
+
+
+void MainWindow::on_trang_clicked()
+{
+    QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+    H.saveang();
+        notifyIcon->show();
+        notifyIcon->setIcon(QIcon("icone.png"));
+
+        notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+        lng="ANG";
+                           // page biblo
+
+                           ui->nom->setText("Name");
+                           ui->prenom->setText("First name");
+                           ui->id->setText("Contract id");
+                           ui->email->setText("Email");
+                           ui->datee->setText("Contract date");
+                           ui->cin->setText("NIC");
+                           ui->num->setText("File number");
+                           ui->pb_ajouter->setText("Add");
+                           ui->pb_modifier->setText("Modify");
+                           ui->pb_supp->setText("Delete");
+                           ui->tr1->setText("Sort by name");
+                           ui->tr2->setText("Sort by id");
+                           ui->tr3->setText("Sort by date");
+                           ui->cherche_li->setText("Search");
+                           ui->archiver->setText("Archive");
+                           ui->imprimer->setText("Print");
+                           ui->trfr->setText("Frensh");
+                           ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_clicked()
+{
+    QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+    H.savefr();
+        notifyIcon->show();
+        notifyIcon->setIcon(QIcon("icone.png"));
+
+        notifyIcon->showMessage("Traduction francais ","Traduction francais",QSystemTrayIcon::Information,15000);
+        lng="fr";
+                           // page biblo
+
+                           ui->nom->setText("Nom");
+                           ui->prenom->setText("Prenom");
+                           ui->id->setText("Id contrat");
+                           ui->email->setText("Email");
+                           ui->datee->setText("Date Contrat");
+                           ui->cin->setText("CIN");
+                           ui->num->setText("Num dossier");
+                           ui->pb_ajouter->setText("Ajouter");
+                           ui->pb_modifier->setText("Modifier");
+                           ui->pb_supp->setText("Supprimer");
+                           ui->tr1->setText("Trie par nom");
+                           ui->tr2->setText("Trie par id");
+                           ui->tr3->setText("Trie par date");
+                           ui->cherche_li->setText("Recherche");
+                           ui->archiver->setText("Archiver");
+                           ui->imprimer->setText("Imprimer");
+                           ui->trfr->setText("Français");
+                           ui->trang->setText("Anglais");
+}
+
+void MainWindow::on_imprimer_clicked()
+{
+    H.saveimp();
+    QPrinter printer;
+
+        printer.setPrinterName("desiered printer name");
+
+      QPrintDialog dialog(&printer,this);
+
+        if(dialog.exec()== QDialog::Rejected)
+
+            return;
+}
+
+
+

@@ -67,7 +67,7 @@
        <pixmap>../Users/ASUS/Downloads/backkk.jpg</pixmap>
       </property>
      </widget>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="ajouter">
       <property name="geometry">
        <rect>
         <x>360</x>
@@ -86,7 +86,7 @@ color: rgb(226, 27, 27);</string>
       <property name="title">
        <string>Ajouter</string>
       </property>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="id">
        <property name="geometry">
         <rect>
          <x>30</x>
@@ -102,7 +102,7 @@ color: rgb(226, 27, 27);</string>
         <string>Id_Contrat</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="nom">
        <property name="geometry">
         <rect>
          <x>50</x>
@@ -118,7 +118,7 @@ color: rgb(226, 27, 27);</string>
         <string>Nom</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="prenom">
        <property name="geometry">
         <rect>
          <x>40</x>
@@ -134,7 +134,7 @@ color: rgb(226, 27, 27);</string>
         <string>Prenom</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="email">
        <property name="geometry">
         <rect>
          <x>50</x>
@@ -150,7 +150,7 @@ color: rgb(226, 27, 27);</string>
         <string>Email</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="datee">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -166,7 +166,7 @@ color: rgb(226, 27, 27);</string>
         <string>Date_Contrat</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="num">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -269,7 +269,7 @@ border-radius:10px;</string>
         <string>Ajouter</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_8">
+      <widget class="QLabel" name="cin">
        <property name="geometry">
         <rect>
          <x>25</x>
@@ -325,8 +325,8 @@ border-radius:10px;</string>
      <widget class="QPushButton" name="pb_supp">
       <property name="geometry">
        <rect>
-        <x>770</x>
-        <y>310</y>
+        <x>830</x>
+        <y>460</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -346,8 +346,8 @@ border-radius:10px;</string>
      <widget class="QPushButton" name="pb_modifier">
       <property name="geometry">
        <rect>
-        <x>770</x>
-        <y>380</y>
+        <x>730</x>
+        <y>460</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -364,11 +364,11 @@ border-radius:10px;</string>
        <string>Modifier</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="imprimer">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>590</y>
+        <x>40</x>
+        <y>770</y>
         <width>93</width>
         <height>28</height>
        </rect>
@@ -385,32 +385,11 @@ border-radius:10px;</string>
        <string>Imprimer</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>680</y>
-        <width>93</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
-
-background-color: rgb(226, 27, 27);
-
-color: rgb(255, 255, 255);
-border-radius:10px;</string>
-      </property>
-      <property name="text">
-       <string>Traduire</string>
-      </property>
-     </widget>
      <widget class="QRadioButton" name="tr3">
       <property name="geometry">
        <rect>
         <x>920</x>
-        <y>540</y>
+        <y>710</y>
         <width>97</width>
         <height>20</height>
        </rect>
@@ -426,7 +405,7 @@ border-radius:10px;</string>
       <property name="geometry">
        <rect>
         <x>920</x>
-        <y>490</y>
+        <y>670</y>
         <width>97</width>
         <height>20</height>
        </rect>
@@ -442,7 +421,7 @@ border-radius:10px;</string>
       <property name="geometry">
        <rect>
         <x>920</x>
-        <y>440</y>
+        <y>630</y>
         <width>97</width>
         <height>20</height>
        </rect>
@@ -458,10 +437,93 @@ border-radius:10px;</string>
       <property name="geometry">
        <rect>
         <x>920</x>
-        <y>640</y>
+        <y>550</y>
         <width>113</width>
         <height>22</height>
        </rect>
+      </property>
+      <property name="placeholderText">
+       <string>chercher</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="archiver">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>650</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
+      </property>
+      <property name="text">
+       <string>Archiver</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="trang">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>500</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
+      </property>
+      <property name="text">
+       <string>Anglais</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="trfr">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>550</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 10pt &quot;Century Gothic&quot;;
+
+background-color: rgb(226, 27, 27);
+
+color: rgb(255, 255, 255);
+border-radius:10px;</string>
+      </property>
+      <property name="text">
+       <string>Français</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="digital_clock">
+      <property name="geometry">
+       <rect>
+        <x>1080</x>
+        <y>10</y>
+        <width>221</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color:red;
+font-size:30px;</string>
+      </property>
+      <property name="text">
+       <string>Clock</string>
       </property>
      </widget>
     </widget>

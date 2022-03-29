@@ -9,6 +9,7 @@
 #include <QTableView>
 
 
+
 class Contrat
 {
 public:

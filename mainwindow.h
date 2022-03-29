@@ -1,5 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+#include "contrat.h"
+#include "historique.h"
 #include <QMainWindow>
 
 
@@ -32,8 +34,22 @@ private slots:
 
     void on_cherche_li_textChanged(const QString &arg1);
 
+
+    void on_trang_clicked();
+
+    void on_trfr_clicked();
+
+    void on_imprimer_clicked();
+
+    void showtime();
+
+    void on_archiver_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QString lng;
+    historique H;
+
 };
 
 #endif // MAINWINDOW_H
