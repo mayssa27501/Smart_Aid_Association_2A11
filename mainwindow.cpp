@@ -171,8 +171,8 @@ void MainWindow::on_bouton_excel_clicked()
     QTableView *table;
                    table = ui->tab_stock;
 
-                   QString filters("CSV files (.xlsx);;All files (.*)");
-                   QString defaultFilter("CSV files (*.xlsx)");
+                   QString filters("CSV files (.csv);;All files (.*)");
+                   QString defaultFilter("CSV files (*.csv)");
                    QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
                                       filters, &defaultFilter);
                    QFile file(fileName);
