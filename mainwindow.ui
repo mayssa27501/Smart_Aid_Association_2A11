@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>2017</width>
-    <height>1148</height>
+    <width>2038</width>
+    <height>1207</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -179,7 +179,7 @@ border-bottom:1px solid  #717072;
      <widget class="QTabWidget" name="tabWidget">
       <property name="geometry">
        <rect>
-        <x>0</x>
+        <x>10</x>
         <y>0</y>
         <width>3211</width>
         <height>1901</height>
@@ -235,7 +235,7 @@ border-bottom:1px solid  #717072;
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -254,7 +254,7 @@ border-bottom:1px solid  #717072;
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>../../../Downloads/cat-black-background-background- (1) (1) (1).jpg</pixmap>
+         <pixmap>../../../Downloads/cat-black-background-background- (1).jpg</pixmap>
         </property>
        </widget>
        <widget class="QGroupBox" name="groupBox">
@@ -263,7 +263,7 @@ border-bottom:1px solid  #717072;
           <x>100</x>
           <y>50</y>
           <width>451</width>
-          <height>581</height>
+          <height>571</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -456,8 +456,8 @@ color: rgb(255, 255, 255);
         <widget class="QPushButton" name="Ajouter">
          <property name="geometry">
           <rect>
-           <x>310</x>
-           <y>530</y>
+           <x>330</x>
+           <y>510</y>
            <width>111</width>
            <height>41</height>
           </rect>
@@ -478,12 +478,51 @@ background-color: rgb(2, 36, 64);
           <bool>false</bool>
          </property>
         </widget>
-        <widget class="QPushButton" name="mod_btn">
+        <widget class="QLabel" name="label_29">
          <property name="geometry">
           <rect>
-           <x>10</x>
-           <y>530</y>
-           <width>121</width>
+           <x>40</x>
+           <y>450</y>
+           <width>141</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>CIN_Dirgeant</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="cin_Dirgeant">
+         <property name="geometry">
+          <rect>
+           <x>210</x>
+           <y>460</y>
+           <width>113</width>
+           <height>22</height>
+          </rect>
+         </property>
+         <property name="placeholderText">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QComboBox" name="change">
+         <property name="geometry">
+          <rect>
+           <x>350</x>
+           <y>40</y>
+           <width>91</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="modifer_btn">
+         <property name="geometry">
+          <rect>
+           <x>30</x>
+           <y>510</y>
+           <width>111</width>
            <height>41</height>
           </rect>
          </property>
@@ -497,70 +536,24 @@ background-color: rgb(2, 36, 64);
           <string>Modifier</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="id_tresorie">
+        <widget class="QLabel" name="label_35">
          <property name="geometry">
           <rect>
-           <x>216</x>
-           <y>399</y>
-           <width>113</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLineEdit" name="id_stock">
-         <property name="geometry">
-          <rect>
-           <x>217</x>
-           <y>443</y>
-           <width>113</width>
-           <height>22</height>
-          </rect>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_27">
-         <property name="geometry">
-          <rect>
-           <x>60</x>
+           <x>50</x>
            <y>400</y>
-           <width>111</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Id_Tresorie</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_28">
-         <property name="geometry">
-          <rect>
-           <x>70</x>
-           <y>440</y>
-           <width>101</width>
-           <height>20</height>
-          </rect>
-         </property>
-         <property name="text">
-          <string>Id Stock</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_29">
-         <property name="geometry">
-          <rect>
-           <x>40</x>
-           <y>479</y>
            <width>141</width>
            <height>31</height>
           </rect>
          </property>
          <property name="text">
-          <string>CIN_Dirgeant</string>
+          <string>VILLE</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="cin_Dirgeant">
+        <widget class="QLineEdit" name="le_ville">
          <property name="geometry">
           <rect>
-           <x>220</x>
-           <y>490</y>
+           <x>210</x>
+           <y>400</y>
            <width>113</width>
            <height>22</height>
           </rect>
@@ -569,6 +562,38 @@ background-color: rgb(2, 36, 64);
           <string/>
          </property>
         </widget>
+       </widget>
+       <widget class="QPushButton" name="pushButton_2">
+        <property name="geometry">
+         <rect>
+          <x>670</x>
+          <y>160</y>
+          <width>161</width>
+          <height>61</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14pt &quot;Times New Roman&quot;;
+color: rgb(255, 255, 255);
+background-color: rgb(2, 36, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>SMS</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Digital_clock">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>141</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CLOCK</string>
+        </property>
        </widget>
       </widget>
       <widget class="QWidget" name="tab_3">
@@ -588,7 +613,7 @@ background-color: rgb(2, 36, 64);
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>../../../Downloads/cat-black-background-background- (1) (1) (1).jpg</pixmap>
+         <pixmap>../../../Downloads/cat-black-background-background- (1).jpg</pixmap>
         </property>
        </widget>
        <widget class="QTableView" name="affiche_tab">
@@ -608,8 +633,8 @@ color: rgb(0, 0, 0);</string>
        <widget class="QPushButton" name="Supp_btn">
         <property name="geometry">
          <rect>
-          <x>292</x>
-          <y>110</y>
+          <x>300</x>
+          <y>100</y>
           <width>161</width>
           <height>31</height>
          </rect>
@@ -618,26 +643,13 @@ color: rgb(0, 0, 0);</string>
          <string>Supprimer</string>
         </property>
        </widget>
-       <widget class="QLineEdit" name="cin_2">
-        <property name="geometry">
-         <rect>
-          <x>170</x>
-          <y>110</y>
-          <width>113</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true"/>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_12">
         <property name="geometry">
          <rect>
-          <x>100</x>
-          <y>110</y>
-          <width>71</width>
-          <height>21</height>
+          <x>70</x>
+          <y>100</y>
+          <width>81</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="text">
@@ -696,9 +708,9 @@ color: rgb(0, 0, 0);</string>
         <property name="geometry">
          <rect>
           <x>480</x>
-          <y>110</y>
-          <width>431</width>
-          <height>22</height>
+          <y>101</y>
+          <width>451</width>
+          <height>31</height>
          </rect>
         </property>
         <property name="placeholderText">
@@ -711,17 +723,65 @@ color: rgb(0, 0, 0);</string>
           <x>270</x>
           <y>920</y>
           <width>491</width>
-          <height>28</height>
+          <height>51</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14pt &quot;Times New Roman&quot;;
+color: rgb(255, 255, 255);
+background-color: rgb(2, 36, 64);
+</string>
         </property>
         <property name="text">
          <string>Afficher le Tableau</string>
         </property>
        </widget>
+       <widget class="QComboBox" name="comboBox_2">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>101</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="telechargerPDF">
+        <property name="geometry">
+         <rect>
+          <x>1050</x>
+          <y>160</y>
+          <width>121</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font: 14pt &quot;Times New Roman&quot;;
+color: rgb(255, 255, 255);
+background-color: rgb(2, 36, 64);
+</string>
+        </property>
+        <property name="text">
+         <string>PDF</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Digital_clock_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>141</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CLOCK</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
-        <string>Calendrier</string>
+        <string>Map</string>
        </attribute>
        <widget class="QLabel" name="label_13">
         <property name="geometry">
@@ -736,16 +796,59 @@ color: rgb(0, 0, 0);</string>
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>../../../Downloads/cat-black-background-background- (1) (1) (1).jpg</pixmap>
+         <pixmap>../../../Downloads/cat-black-background-background- (1).jpg</pixmap>
         </property>
        </widget>
-       <widget class="QCalendarWidget" name="calendarWidget">
+       <widget class="QLabel" name="label_pic">
         <property name="geometry">
          <rect>
-          <x>140</x>
-          <y>160</y>
-          <width>671</width>
-          <height>381</height>
+          <x>450</x>
+          <y>140</y>
+          <width>531</width>
+          <height>431</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>TextLabel</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton">
+        <property name="geometry">
+         <rect>
+          <x>290</x>
+          <y>430</y>
+          <width>93</width>
+          <height>28</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+        </property>
+        <property name="text">
+         <string>map</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox">
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>360</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="geometry">
+         <rect>
+          <x>250</x>
+          <y>296</y>
+          <width>171</width>
+          <height>41</height>
          </rect>
         </property>
         <property name="styleSheet">
@@ -753,6 +856,204 @@ color: rgb(0, 0, 0);</string>
 color: rgb(0, 0, 0);</string>
         </property>
        </widget>
+       <widget class="QLabel" name="Digital_clock_3">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>141</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CLOCK</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_5">
+       <attribute name="title">
+        <string>Calendrier</string>
+       </attribute>
+       <widget class="QCalendarWidget" name="calendarWidget">
+        <property name="geometry">
+         <rect>
+          <x>35</x>
+          <y>279</y>
+          <width>471</width>
+          <height>231</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);</string>
+        </property>
+       </widget>
+       <widget class="QDateEdit" name="dateEdit_emploi">
+        <property name="geometry">
+         <rect>
+          <x>199</x>
+          <y>520</y>
+          <width>171</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QDateTimeEdit" name="dateTimeEdit_emploiS">
+        <property name="geometry">
+         <rect>
+          <x>730</x>
+          <y>360</y>
+          <width>194</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_mdf_emploi">
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>510</y>
+          <width>201</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>modifier</string>
+        </property>
+       </widget>
+       <widget class="QTableView" name="tableView_emploi">
+        <property name="geometry">
+         <rect>
+          <x>240</x>
+          <y>90</y>
+          <width>691</width>
+          <height>181</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_19">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>360</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>date de début: </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_20">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>400</y>
+          <width>181</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>date de fin:</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_emploi_goto">
+        <property name="geometry">
+         <rect>
+          <x>390</x>
+          <y>520</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>go to date</string>
+        </property>
+       </widget>
+       <widget class="QDateTimeEdit" name="dateTimeEdit_emploiE">
+        <property name="geometry">
+         <rect>
+          <x>730</x>
+          <y>400</y>
+          <width>194</width>
+          <height>22</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_mtrcl_emploi">
+        <property name="geometry">
+         <rect>
+          <x>780</x>
+          <y>460</y>
+          <width>81</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_emploi">
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>459</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>matricule employé(e): </string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_21">
+        <property name="geometry">
+         <rect>
+          <x>-10</x>
+          <y>-160</y>
+          <width>1921</width>
+          <height>1201</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Downloads/cat-black-background-background- (1).jpg</pixmap>
+        </property>
+       </widget>
+       <widget class="QLabel" name="Digital_clock_4">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>141</width>
+          <height>51</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>CLOCK</string>
+        </property>
+       </widget>
+       <zorder>label_21</zorder>
+       <zorder>calendarWidget</zorder>
+       <zorder>dateEdit_emploi</zorder>
+       <zorder>dateTimeEdit_emploiS</zorder>
+       <zorder>pushButton_mdf_emploi</zorder>
+       <zorder>tableView_emploi</zorder>
+       <zorder>label_19</zorder>
+       <zorder>label_20</zorder>
+       <zorder>pushButton_emploi_goto</zorder>
+       <zorder>dateTimeEdit_emploiE</zorder>
+       <zorder>label_mtrcl_emploi</zorder>
+       <zorder>label_emploi</zorder>
+       <zorder>Digital_clock_4</zorder>
       </widget>
      </widget>
     </widget>
@@ -763,7 +1064,7 @@ color: rgb(0, 0, 0);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>2017</width>
+     <width>2038</width>
      <height>26</height>
     </rect>
    </property>

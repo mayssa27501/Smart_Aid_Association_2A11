@@ -3,8 +3,9 @@
 #include <QDate>
 #include <QSqlQueryModel>
 #include <QTableView>
-
+#include <QPdfWriter>
 #include <QString>
+#include <QPainter>
 
 //dsfdsf
 
@@ -16,9 +17,9 @@ public:
 
     RESSOURCE_HUMAINE();
 
-    RESSOURCE_HUMAINE(int,QString,QString,QString,QDate,int,float,int,int,int);
+    RESSOURCE_HUMAINE(int,QString,QString,QString,QDate,int,float,QString,int);
 
-    int getCIN();
+    int getID_EMP();
 
     QString getNOM();
 
@@ -32,14 +33,12 @@ public:
 
     float getSALAIRE();
 
-    int getID_TRESORIE();
+    QString getVILLE();
 
-    int getID_STOCK();
-
-    int getCIN_DIRIGEANT();
+    int getID_DIRIGEANT();
 
 
-     void setCIN(int);
+    void setID_EMP(int);
 
     void setNOM(QString);
 
@@ -53,25 +52,27 @@ public:
 
     void setSALAIRE(float);
 
-    void setID_TRESORIE(int);
+    void setVILLE(QString);
 
-     void setID_STOCK(int);
+    void setID_DIRIGEANT(int);
 
-    void setCIN_DIRIGEANT(int);
+
 
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(int);
-    bool modifier(int,QString,QString,QString,QDate,int,float,int,int,int);
+    bool modifier(int,QString,QString,QString,QDate,int,float,QString,int);
     QSqlQueryModel * triercin();
     QSqlQueryModel * trierdate();
     QSqlQueryModel * triersalaire();
     void recherche(QTableView * tabl, int,QString,QString);
+    void telechargerPDF();
 
+    bool modifier_emploi(QString mtrcl, QDateTime dateS, QDateTime dateE);
 
 private:
 
-    int CIN;
+    int ID_EMP;
 
     QString NOM,PRENOM,METIER;
 
@@ -81,7 +82,12 @@ private:
 
     float SALAIRE;
 
-    int ID_TRESORIE,ID_STOCK,CIN_DIRIGEANT;
+    QString VILLE;
+
+    int ID_DIRIGEANT;
+    QString emploi;
+
+
 };
 
 #endif // RESSOURCEHUMAINE_H
