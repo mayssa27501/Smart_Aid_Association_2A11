@@ -49,19 +49,50 @@ bool MainWindow::controlSaisie(){
     QRegExp mailREX("\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b");
         mailREX.setCaseSensitivity(Qt::CaseInsensitive);
         mailREX.setPatternSyntax(QRegExp::RegExp);
-    if (
-            !(ui->le_nom->text().contains(QRegExp("^[A-Za-z]+$"))) ||
-            !(ui->le_prenom->text().contains(QRegExp("^[A-Za-z]+$"))) ||
-            ui->le_id->text().isEmpty() ||
-            ui->le_id->text().toInt() == 0 ||
-            ui->le_cin->text().isEmpty() ||
-            ui->le_cin->text().toInt() == 0 ||
-            ui->le_numd->text().isEmpty() ||
-            ui->le_numd->text().toInt() == 0 ||
-            !(mailREX.exactMatch(ui->le_email->text()))
-            )
-        return 0;
-    else
+
+            if(
+                !(ui->le_nom->text().contains(QRegExp("^[A-Za-z]+$"))) )
+            { QMessageBox::critical(nullptr, QObject::tr("not ok"),
+              QObject::tr("nom invalide.\n"
+              "Click cancel to exit."), QMessageBox::Cancel);
+                return 0;}
+
+
+
+              if(
+                  !(ui->le_prenom->text().contains(QRegExp("^[A-Za-z]+$"))) )
+                { QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                  QObject::tr("prenom invalide.\n"
+                 "Click cancel to exit."), QMessageBox::Cancel);
+             return 0;}
+            if(ui->le_id->text().isEmpty() ||
+               ui->le_id->text().toInt() == 0)
+    { QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                 QObject::tr("id invalide.\n"
+                 "Click cancel to exit."), QMessageBox::Cancel);
+           return 0;}
+
+
+            if(ui->le_cin->text().isEmpty() ||
+            ui->le_cin->text().toInt() == 0 )
+            { QMessageBox::critical(nullptr, QObject::tr("not ok"),
+               QObject::tr("cin invalide.\n"
+               "Click cancel to exit."), QMessageBox::Cancel);
+                   return 0;}
+
+            if(ui->le_numd->text().isEmpty() ||
+            ui->le_numd->text().toInt() == 0)
+            { QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                QObject::tr("numd invalide.\n"
+                "Click cancel to exit."), QMessageBox::Cancel);
+                   return 0;}
+
+            if(
+                !(mailREX.exactMatch(ui->le_email->text()))) { QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                   QObject::tr("email invalide.\n"
+                   "Click cancel to exit."), QMessageBox::Cancel);
+                   return 0;}
+
         return 1;
 }
 
