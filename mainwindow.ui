@@ -133,22 +133,7 @@ color: rgb(255, 255, 255);
         <rect>
          <x>220</x>
          <y>100</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-color: rgb(255, 255, 255);
-
-background-color: rgb(0, 0, 0);</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="le_espece">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>150</y>
-         <width>113</width>
+         <width>191</width>
          <height>22</height>
         </rect>
        </property>
@@ -163,7 +148,7 @@ background-color: rgb(0, 0, 0);</string>
         <rect>
          <x>220</x>
          <y>200</y>
-         <width>113</width>
+         <width>191</width>
          <height>22</height>
         </rect>
        </property>
@@ -178,7 +163,7 @@ background-color: rgb(0, 0, 0);</string>
         <rect>
          <x>220</x>
          <y>250</y>
-         <width>113</width>
+         <width>191</width>
          <height>22</height>
         </rect>
        </property>
@@ -426,21 +411,6 @@ color: rgb(255, 255, 255);</string>
         <string>Ajouter au stock </string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="le_categorie">
-       <property name="geometry">
-        <rect>
-         <x>220</x>
-         <y>310</y>
-         <width>113</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">border-color: rgb(255, 255, 255);
-
-background-color: rgb(0, 0, 0);</string>
-       </property>
-      </widget>
       <widget class="QPushButton" name="pb_modifier">
        <property name="geometry">
         <rect>
@@ -471,13 +441,121 @@ color: rgb(255, 255, 255);</string>
         </size>
        </property>
       </widget>
+      <widget class="QLabel" name="label_9">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>370</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Quantité</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="le_quantite">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>370</y>
+         <width>191</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-color: rgb(255, 255, 255);
+
+background-color: rgb(0, 0, 0);</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="le_categorie">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>300</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>nourriture</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>medicament</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>equipement</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>430</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Delai</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="le_espece">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>150</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);</string>
+       </property>
+       <item>
+        <property name="text">
+         <string>chien</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>chat</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QDateEdit" name="le_delai">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>430</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QPushButton" name="pb_supprimer">
       <property name="geometry">
        <rect>
-        <x>830</x>
-        <y>580</y>
-        <width>81</width>
+        <x>680</x>
+        <y>650</y>
+        <width>171</width>
         <height>61</height>
        </rect>
       </property>
@@ -489,7 +567,7 @@ background-color: rgb(27, 27, 27);
 color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
-       <string/>
+       <string>Supprimer</string>
       </property>
       <property name="icon">
        <iconset>
@@ -502,51 +580,11 @@ color: rgb(255, 255, 255);</string>
        </size>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="bouton_excel">
       <property name="geometry">
        <rect>
-        <x>690</x>
-        <y>670</y>
-        <width>211</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 12pt &quot;Berlin Sans FB&quot;;
-
-background-color: rgb(27, 27, 27);
-
-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Rechercher </string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_5">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>710</y>
-        <width>211</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">font: 12pt &quot;Berlin Sans FB&quot;;
-
-background-color: rgb(27, 27, 27);
-
-color: rgb(255, 255, 255);</string>
-      </property>
-      <property name="text">
-       <string>Trier </string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_6">
-      <property name="geometry">
-       <rect>
-        <x>690</x>
-        <y>750</y>
+        <x>680</x>
+        <y>890</y>
         <width>211</width>
         <height>28</height>
        </rect>
@@ -568,7 +606,7 @@ color: rgb(255, 255, 255);</string>
         <x>105</x>
         <y>580</y>
         <width>561</width>
-        <height>551</height>
+        <height>381</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -604,6 +642,100 @@ font: 75 12pt &quot;Times New Roman&quot;;</string>
       <property name="styleSheet">
        <string notr="true">background-color: rgb(0, 0, 0);
 color: rgb(255, 255, 255);</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="triercategorie">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>790</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Berlin Sans FB&quot;;
+
+
+
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Trier par categorie</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="trierrace">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>820</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Berlin Sans FB&quot;;
+
+
+
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Trier par race</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="triernom">
+      <property name="geometry">
+       <rect>
+        <x>690</x>
+        <y>760</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">font: 12pt &quot;Berlin Sans FB&quot;;
+
+
+
+
+color: rgb(255, 255, 255);</string>
+      </property>
+      <property name="text">
+       <string>Trier par nom</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>680</x>
+        <y>860</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+font: 75 12pt &quot;Times New Roman&quot;;
+</string>
+      </property>
+      <property name="text">
+       <string>Rechercher :</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="le_rechercher">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>860</y>
+        <width>113</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+</string>
       </property>
      </widget>
     </widget>

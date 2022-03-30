@@ -13,14 +13,30 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
+    bool controlSaisie();
     ~MainWindow();
 
 private slots:
+
     void on_pb_ajouter_clicked();
 
     void on_pb_supprimer_clicked();
 
     void on_pb_modifier_clicked();
+    void on_triernom_clicked();
+
+    void on_triercategorie_clicked();
+
+    void on_trierrace_clicked();
+
+
+
+
+
+
+    void on_le_rechercher_textChanged(const QString &arg1);
+
+    void on_bouton_excel_clicked();
 
 private:
     Ui::MainWindow *ui;
