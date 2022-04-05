@@ -738,10 +738,20 @@ color: rgb(255, 255, 255);
 </string>
       </property>
      </widget>
+     <widget class="QSpinBox" name="spinBox">
+      <property name="geometry">
+       <rect>
+        <x>820</x>
+        <y>570</y>
+        <width>101</width>
+        <height>22</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Notification</string>
+      <string>chat</string>
      </attribute>
      <widget class="QLabel" name="label_7">
       <property name="geometry">
@@ -757,6 +767,88 @@ color: rgb(255, 255, 255);
       </property>
       <property name="pixmap">
        <pixmap>../../Users/user/Downloads/cat-black-background-background- (1).jpg</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>190</y>
+        <width>251</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+font: 12pt &quot;Berlin Sans FB&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Gestionnaire de stock </string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_stock">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>190</y>
+        <width>131</width>
+        <height>31</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>250</y>
+        <width>81</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
+font: 12pt &quot;Berlin Sans FB&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Message</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit_message">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>240</y>
+        <width>221</width>
+        <height>71</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_envoyerMessage">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>340</y>
+        <width>93</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(0, 0, 0);
+color: rgb(255, 255, 255);
+font: 12pt &quot;Berlin Sans FB&quot;;</string>
+      </property>
+      <property name="text">
+       <string>Envoyer</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="tableView_messages">
+      <property name="geometry">
+       <rect>
+        <x>560</x>
+        <y>100</y>
+        <width>271</width>
+        <height>271</height>
+       </rect>
       </property>
      </widget>
     </widget>

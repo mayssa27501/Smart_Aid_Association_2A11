@@ -4,6 +4,8 @@
 #include <QString>
 #include <QDate>
 #include <QTableView>
+#include <QSystemTrayIcon>
+#include <QLabel>
 class Stock
 {
 public:
@@ -31,11 +33,16 @@ public:
     QSqlQueryModel * triercategorie();
     QSqlQueryModel * trierrace();
      void recherche(QTableView * table, int,int,QString);
+      bool envoyerMessage(int ,QString );
+     QSqlQueryModel * messagesEnvoyees();
+     QSqlQueryModel * getTRESORIER();
+
 private:
     int ref,quantite ,categorie ,espece;
     QString   race ,nom ;
     QDate delai ;
-
+    QSystemTrayIcon* sticon;
+    QLabel* text;
 
      
 };

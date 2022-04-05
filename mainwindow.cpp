@@ -18,12 +18,28 @@ MainWindow::MainWindow(QWidget *parent) :
      ui->le_reference->setValidator(new QIntValidator(0, 9999999, this));
       ui->le_quantite->setValidator(new QIntValidator(0, 999999, this));
     ui->tab_stock->setModel(S.afficher());
+    ui->comboBox_stock->setModel(S.getTRESORIER());
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+void MainWindow::Alert(){
+    QSqlQueryModel* model =new QSqlQueryModel();
+    QString S=QString::number(Seuil);
+    model->setQuery("SELECT * FROM Stock WHERE quantite < "+S);
+    if (model->rowCount() == 1){
+        QString produitNom =model->data(ui->tab_stock->model()->index(0,3)).toString();
+
+        notifyIcon->show();
+        notifyIcon->showMessage("alerte produits ","le produit "+produitNom+" presque epuisé ",QSystemTrayIcon::Information,15000);
+
+    } else if (model->rowCount() > 1) {
+        notifyIcon->show();
+        notifyIcon->showMessage("alerte produits ","vous avez beaucoup de produits presque epuisés ",QSystemTrayIcon::Information,15000);
+    }
 }
 bool MainWindow::controlSaisie(){
 
@@ -169,39 +185,69 @@ void MainWindow::on_bouton_excel_clicked()
 {
 
     QTableView *table;
-                   table = ui->tab_stock;
+     table = ui->tab_stock;
 
-                   QString filters("CSV files (.csv);;All files (.*)");
-                   QString defaultFilter("CSV files (*.csv)");
-                   QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
-                                      filters, &defaultFilter);
-                   QFile file(fileName);
+     QString filters("CSV files (*.csv);;All files (*.*)");
+     QString defaultFilter("CSV files (*.csv)");
+     QString fileName = QFileDialog::getSaveFileName(0, "Save file", QCoreApplication::applicationDirPath(),
+                        filters, &defaultFilter);
+     QFile file(fileName);
 
-                   QAbstractItemModel *model =  table->model();
-                   if (file.open(QFile::WriteOnly | QFile::Truncate)) {
-                       QTextStream data(&file);
-                       QStringList strList;
-                       for (int i = 0; i < model->columnCount(); i++) {
-                           if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
-                               strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
-                           else
-                               strList.append("");
-                       }
-                       data << strList.join(";") << "\n";
-                       for (int i = 0; i < model->rowCount(); i++) {
-                           strList.clear();
-                           for (int j = 0; j < model->columnCount(); j++) {
+     QAbstractItemModel *model =  table->model();
+     if (file.open(QFile::WriteOnly | QFile::Truncate)) {
+         QTextStream data(&file);
+         QStringList strList;
+         for (int i = 0; i < model->columnCount(); i++) {
+             if (model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString().length() > 0)
+                 strList.append("\"" + model->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString() + "\"");
+             else
+                 strList.append("");
+         }
+         data << strList.join(";") << "\n";
+         for (int i = 0; i < model->rowCount(); i++) {
+             strList.clear();
+             for (int j = 0; j < model->columnCount(); j++) {
 
-                               if (model->data(model->index(i, j)).toString().length() > 0)
-                                   strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
-                               else
-                                   strList.append("");
-                           }
-                           data << strList.join(";") + "\n";
-                       }
-                       file.close();
-                       QMessageBox::information(nullptr, QObject::tr("Exporter le fichier excel"),
-                                                 QObject::tr("Fichier Générer avec succès .\n"
-                                                             "Click OK to exit."), QMessageBox::Ok);
-                   }
+                 if (model->data(model->index(i, j)).toString().length() > 0)
+                     strList.append("\"" + model->data(model->index(i, j)).toString() + "\"");
+                 else
+                     strList.append("");
+             }
+             data << strList.join(";") + "\n";
+         }
+         file.close();
+         QMessageBox::information(this,"Exporter To Excel","Exporter En Excel Avec Succées ");
+     }
 }
+void MainWindow::on_spinBox_valueChanged(int arg1)
+{
+    Seuil = arg1;
+    Alert();
+}
+void MainWindow::refresh()
+{
+  ui->tab_stock->setModel(S.afficher());
+  ui->tableView_messages->setModel(S.messagesEnvoyees());
+
+
+}
+void MainWindow::on_pushButton_envoyerMessage_clicked()
+{
+    bool test = S.envoyerMessage(ui->comboBox_stock->currentText().toInt(),ui->plainTextEdit_message->toPlainText());
+    //ui->comboBox_stock->clear();
+    ui->plainTextEdit_message->clear();
+    if(test)
+    {
+        refresh();
+        QMessageBox::information(nullptr, QObject::tr("succes"),
+                    QObject::tr("message envoyé.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("fail"),
+                    QObject::tr("message non envoyé.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+}
+

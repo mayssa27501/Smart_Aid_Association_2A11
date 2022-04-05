@@ -165,3 +165,24 @@ void Stock::recherche(QTableView * table ,int ref,int espece, QString nom )
     table->show();
 
 }
+bool Stock::envoyerMessage(int ID_EMP_DEST,QString contenu){
+    QSqlQuery query;
+    query.prepare("INSERT INTO MESSAGE (CONTENU,DATE_ENVOI,NUM_OP) "
+                        "VALUES (:ESPECE,:RACE,:ID_EMP)");
+    query.bindValue(":ESPECE", contenu);
+    query.bindValue(":RACE", QDate::currentDate());
+    query.bindValue(":ID_EMP", ID_EMP_DEST);
+    return    query.exec();
+}
+QSqlQueryModel * Stock::messagesEnvoyees()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * from MESSAGE");//where .....
+    return model;
+}
+QSqlQueryModel * Stock::getTRESORIER()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * from TRESORIE");
+    return model;
+}

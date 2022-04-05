@@ -14,6 +14,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     bool controlSaisie();
+     void Alert();
+     void refresh();
     ~MainWindow();
 
 private slots:
@@ -38,9 +40,15 @@ private slots:
 
     void on_bouton_excel_clicked();
 
+    void on_spinBox_valueChanged(int arg1);
+    void on_pushButton_envoyerMessage_clicked();
+
+
 private:
     Ui::MainWindow *ui;
     Stock S;
+    int Seuil;
+    QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
 };
 
 #endif // MAINWINDOW_H
