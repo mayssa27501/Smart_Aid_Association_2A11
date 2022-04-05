@@ -5,10 +5,12 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    Connection c;
+
+    Connection c;//lazem cnx 9bal
 
     bool test=c.createconnect();
+    //POUR Affiche automatique lazem mainwendo baaed cnx
+    MainWindow w;
      if(test)
     {w.show();
         QMessageBox::information(nullptr, QObject::tr("database is open"),

@@ -1,6 +1,6 @@
 #ifndef DONNEUR_H
 #define DONNEUR_H
-
+#include <QTableView>
 #include <QString>
 #include<QSqlQueryModel>
 #include <QtSql/QSqlQuery>
@@ -18,17 +18,18 @@ public:
     int getID_DONNEUR();
     QString getNOM();
      QString getPRENOM();
-     QString getMETIER();
-    QString getSEXE();
-int getID_TRESORIE();
+     QString getemail();
+   QString getTYPE();
+int getNUM_OPERATION();
 
 
      void setID_DONNEUR(int);
     void setNOM(QString);
     void setPRENOM(QString);
-     void setMETIER(QString);
-    void setSEXE(QString);
-    void setID_TRESORIE(int);
+    void setemail(QString);
+     void setTYPE(QString);
+
+    void setNUM_OPERATION(int);
      bool ajouter();
      QSqlQueryModel* afficher();
      QSqlQueryModel * triernom();
@@ -36,11 +37,14 @@ int getID_TRESORIE();
        QSqlQueryModel * trierid();
      bool supprimer(int);
      bool modifier(int,QString,QString,QString,QString,int);
-
-
+     //recherche
+QSqlQueryModel * recherche(QString id_donneur);
+QSqlQueryModel * rechercheN(QString nom);
+QSqlQueryModel * rechercheP(QString prenom);
 private:
-    int ID_DONNEUR ,ID_TRESORIE;
-    QString NOM, PRENOM, METIER, SEXE;
+    int ID_DONNEUR ,NUM_OPERATION;
+    QString NOM, PRENOM,TYPE ,email ;
+
 
 
 
