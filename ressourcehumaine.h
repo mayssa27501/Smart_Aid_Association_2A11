@@ -85,7 +85,7 @@ private:
     QString VILLE;
 
     int ID_DIRIGEANT;
-    QString emploi;
+    QString reservation;
 
 
 };

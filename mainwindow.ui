@@ -924,9 +924,9 @@ color: rgb(0, 0, 0);</string>
        <widget class="QTableView" name="tableView_emploi">
         <property name="geometry">
          <rect>
-          <x>240</x>
-          <y>90</y>
-          <width>691</width>
+          <x>70</x>
+          <y>80</y>
+          <width>1091</width>
           <height>181</height>
          </rect>
         </property>
@@ -983,22 +983,6 @@ color: rgb(0, 0, 0);</string>
          </rect>
         </property>
        </widget>
-       <widget class="QLabel" name="label_mtrcl_emploi">
-        <property name="geometry">
-         <rect>
-          <x>780</x>
-          <y>460</y>
-          <width>81</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color: rgb(255, 255, 255);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
        <widget class="QLabel" name="label_emploi">
         <property name="geometry">
          <rect>
@@ -1009,7 +993,7 @@ color: rgb(0, 0, 0);</string>
          </rect>
         </property>
         <property name="text">
-         <string>matricule employé(e): </string>
+         <string>ID employé(e): </string>
         </property>
        </widget>
        <widget class="QLabel" name="label_21">
@@ -1041,6 +1025,16 @@ color: rgb(0, 0, 0);</string>
          <string>CLOCK</string>
         </property>
        </widget>
+       <widget class="QComboBox" name="comboBox_3">
+        <property name="geometry">
+         <rect>
+          <x>780</x>
+          <y>460</y>
+          <width>131</width>
+          <height>31</height>
+         </rect>
+        </property>
+       </widget>
        <zorder>label_21</zorder>
        <zorder>calendarWidget</zorder>
        <zorder>dateEdit_emploi</zorder>
@@ -1051,9 +1045,9 @@ color: rgb(0, 0, 0);</string>
        <zorder>label_20</zorder>
        <zorder>pushButton_emploi_goto</zorder>
        <zorder>dateTimeEdit_emploiE</zorder>
-       <zorder>label_mtrcl_emploi</zorder>
        <zorder>label_emploi</zorder>
        <zorder>Digital_clock_4</zorder>
+       <zorder>comboBox_3</zorder>
       </widget>
      </widget>
     </widget>

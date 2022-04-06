@@ -95,6 +95,7 @@ void MainWindow::on_Ajouter_clicked()
                  msgBox.exec();
                  }
                  ui->affiche_tab->setModel(RH.afficher());
+                 ui->tableView_emploi->setModel(RH.afficher());
                  ui->change->setModel(RH.afficher());
                  ui->comboBox_2->setModel(RH.afficher());
                  ui->comboBox->setModel(RH.afficher());
@@ -133,6 +134,7 @@ void MainWindow::on_Supp_btn_clicked()
         ui->change->setModel(RH.afficher());
         ui->comboBox_2->setModel(RH.afficher());
         ui->comboBox->setModel(RH.afficher());
+        ui->tableView_emploi->setModel(RH.afficher());
 
 
 
@@ -234,6 +236,8 @@ void MainWindow::on_calendarWidget_clicked(const QDate &date)
         ui->dateTimeEdit_emploiS->setDateTimeRange(date_min, date_max);
         ui->dateTimeEdit_emploiE->setDateTimeRange(date_min, date_max);
 }
+
+
 bool MainWindow::controlSaisie(){
 
 
@@ -286,7 +290,6 @@ void MainWindow::on_change_activated(const QString &arg1)
                 while(query.next())
                 {
 
-               ui->cin->setText(query.value(0).toString());
                ui->nom->setText(query.value(1).toString());
                 ui->prenom->setText(query.value(2).toString());
                 ui->metier->setText(query.value(3).toString());
@@ -344,6 +347,7 @@ void MainWindow::on_Afficher_li_clicked()
     ui->change->setModel(RH.afficher());
     ui->comboBox_2->setModel(RH.afficher());
     ui->comboBox->setModel(RH.afficher());
+    ui->comboBox_3->setModel(RH.afficher());
     ui->tableView_emploi->setModel(RH.afficher());
 
 }
@@ -360,7 +364,12 @@ void MainWindow::on_telechargerPDF_clicked()
 void MainWindow::on_tableView_emploi_clicked(const QModelIndex &index)
 {
     QString mtrcl_emp = ui->tableView_emploi->model()->index(index.row(), 0).data().toString();
-     ui->label_mtrcl_emploi->setText(mtrcl_emp);
+    int ID_EMP = ui->comboBox_3->currentText().toInt();
+
+             QString id_string= QString::number(ID_EMP);
+                    QSqlQuery query;
+                    query.prepare("select * from RESSOURCE_HUMAINE where ID_EMP='"+id_string+"'");
+
 }
 
 
@@ -385,11 +394,13 @@ void MainWindow::on_dateTimeEdit_emploiE_dateTimeChanged(const QDateTime &dateTi
 
 void MainWindow::on_pushButton_mdf_emploi_clicked()
 {
-
-    QString mtrcl = ui->label_mtrcl_emploi->text();
+    int mtrcl1 = ui->comboBox_3->currentText().toInt();
+    QString mtrcl=QString::number(mtrcl1);
      QDateTime dateS = ui->dateTimeEdit_emploiS->dateTime();
      QDateTime dateE = ui->dateTimeEdit_emploiE->dateTime();
      qDebug() << RH.modifier_emploi(mtrcl, dateS, dateE);
+     ui->affiche_tab->setModel(RH.afficher());
+     ui->tableView_emploi->setModel(RH.afficher());
 
 }
 
@@ -412,11 +423,27 @@ void MainWindow::on_comboBox_activated(const QString &arg1)
                             if  (ui->textEdit->toPlainText()== "tunis")
                                         {ui->label_pic->clear();
 
-                                  QPixmap pix("C:/Users/dalys/OneDrive/Bureau/map.png");
+                                  QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/maptunis.png");
                                  int w = ui->label_pic->width();
                                  int h = ui->label_pic->height();
                                   ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
                               }
+                           else if  (ui->textEdit->toPlainText()== "mahdia")
+                                        {ui->label_pic->clear();
+
+                                  QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/mapmahdia.png");
+                                 int w = ui->label_pic->width();
+                                 int h = ui->label_pic->height();
+                                  ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                              }
+                            else if  (ui->textEdit->toPlainText()== "bizerte")
+                                         {ui->label_pic->clear();
+
+                                   QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/mapbizerte.png");
+                                  int w = ui->label_pic->width();
+                                  int h = ui->label_pic->height();
+                                   ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                               }
 
                                  else
                                  {

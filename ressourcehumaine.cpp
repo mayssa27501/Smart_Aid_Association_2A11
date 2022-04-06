@@ -204,7 +204,7 @@ void RESSOURCE_HUMAINE::recherche(QTableView * table ,int cin,QString nom, QStri
 
 void  RESSOURCE_HUMAINE::telechargerPDF(){
 
-                     QPdfWriter pdf("C:\\Users\\dalys\\OneDrive\\Bureau\\PDF\\import.pdf");
+                     QPdfWriter pdf("C:\\Users\\dalys\\OneDrive\\Bureau\\Atelier_Connexion\\import.pdf");
                      QPainter painter(&pdf);
                     int i = 4000;
                          painter.setPen(Qt::blue);
@@ -250,7 +250,7 @@ bool RESSOURCE_HUMAINE::modifier_emploi(QString mtrcl, QDateTime dateS, QDateTim
     QSqlQuery query;
     QString date_stringS = dateS.toString("d MMM yyyy h:m");
     QString date_stringE = dateE.toString("d MMM yyyy h:m");
-    QString date_string = date_stringE + date_stringE;
+    QString date_string = "From "+date_stringS +" To "+ date_stringE;
 
     query.prepare("UPDATE RESSOURCE_HUMAINE set reservation=:reserv where ID_EMP=:mtrcl");
     query.bindValue(":mtrcl", mtrcl);
