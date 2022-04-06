@@ -28,12 +28,14 @@ SOURCES += \
     dossier_medical.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    qrcodegen.cpp
 
 HEADERS += \
     dossier_medical.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    qrcodegen.cpp
 
 FORMS += \
         mainwindow.ui

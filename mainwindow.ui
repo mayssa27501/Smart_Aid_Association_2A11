@@ -508,6 +508,9 @@ font: 75 13pt &quot;Times New Roman&quot;;
         <height>20</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(0, 0, 0);</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
@@ -523,6 +526,19 @@ font: 75 13pt &quot;Times New Roman&quot;;
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="qrcode">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>50</y>
+        <width>321</width>
+        <height>291</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
       </property>
      </widget>
      <zorder>label_2</zorder>
@@ -547,6 +563,7 @@ font: 75 13pt &quot;Times New Roman&quot;;
      <zorder>cin_emp</zorder>
      <zorder>cherche_li</zorder>
      <zorder>le_num</zorder>
+     <zorder>qrcode</zorder>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">

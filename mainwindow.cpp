@@ -6,7 +6,8 @@
 #include <QMainWindow>
 #include <QtQml/qqml.h>
 #include <QMessageBox>
-
+#include "qrcodegen.hpp"
+//C:\Qt\QtIFW-3.1.1\bin\binarycreator.exe -c config/config.xml -p packages SaSInstaller
 Dossier_medical DM;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,46 +35,46 @@ bool MainWindow::controlsaisie(){
                                                                                      "Click cancel to exit."), QMessageBox::Cancel);
                 return 0;
     }
-         if(   !(ui->le_diag->text().contains(QRegExp("^[A-Za-z]+$")))){
+         if(   !(ui->le_diag->text().contains(QRegExp("^[A-Z a-z]+$")))){
              QMessageBox::critical(nullptr, QObject::tr("not ok"),
                                                                               QObject::tr("diagnostic invalide.\n"
                                                                                           "Click cancel to exit."), QMessageBox::Cancel);
                      return 0;
          }
-           if ( !(ui->le_nom->text().contains(QRegExp("^[A-Za-z]+$"))))
+           if ( !(ui->le_nom->text().contains(QRegExp("^[A-Z a-z]+$"))))
            {
                QMessageBox::critical(nullptr, QObject::tr("not ok"),
                                                                                 QObject::tr("nom invalide.\n"
                                                                                             "Click cancel to exit."), QMessageBox::Cancel);
                        return 0;
            }
-           if ( !(ui->le_race->text().contains(QRegExp("^[A-Za-z]+$"))))
+           if ( !(ui->le_race->text().contains(QRegExp("^[A-Z a-z]+$"))))
            {
                QMessageBox::critical(nullptr, QObject::tr("not ok"),
                                                                                 QObject::tr("race invalide.\n"
                                                                                             "Click cancel to exit."), QMessageBox::Cancel);
                        return 0;
            }
-           if ( !(ui->le_sexe->text().contains(QRegExp("^[A-Za-z]+$")))) {
+           if ( !(ui->le_sexe->text().contains(QRegExp("^[A-Z a-z]+$")))) {
                QMessageBox::critical(nullptr, QObject::tr("not ok"),
                                                                                 QObject::tr("sexe invalide.\n"
                                                                                             "Click cancel to exit."), QMessageBox::Cancel);
                        return 0;
            }
 
-         if (!(ui->le_setri->text().contains(QRegExp("^[A-Za-z]+$")))){
+         if (!(ui->le_setri->text().contains(QRegExp("^[A-Z a-z]+$")))){
              QMessageBox::critical(nullptr, QObject::tr("not ok"),
                                                                               QObject::tr("sterilisation invalide.\n"
                                                                                           "Click cancel to exit."), QMessageBox::Cancel);
                      return 0;
          }
-         if (!(ui->le_vaccn->text().contains(QRegExp("^[A-Za-z]+$")))){
+         if (!(ui->le_vaccn->text().contains(QRegExp("^[A-Z a-z]+$")))){
              QMessageBox::critical(nullptr, QObject::tr("not ok"),
                                                                               QObject::tr("vaccin invalide.\n"
                                                                                           "Click cancel to exit."), QMessageBox::Cancel);
                      return 0;
          }
-         if (!(ui->le_trait->text().contains(QRegExp("^[A-Za-z]+$")))){
+         if (!(ui->le_trait->text().contains(QRegExp("^[A-Z a-z]+$")))){
              QMessageBox::critical(nullptr, QObject::tr("not ok"),
                                                                               QObject::tr("traitement invalide.\n"
                                                                                           "Click cancel to exit."), QMessageBox::Cancel);
@@ -151,7 +152,14 @@ void MainWindow::on_pb_ajouter_clicked()
 
 void MainWindow::on_pb_supp_clicked()
 {
+
     int num_doss=ui->le_supp->text().toInt();
+    if(DM.dossierExist(num_doss)==0)
+    {
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                    QObject::tr("dossier nexiste.\n"
+                                "Click cancel to exit."), QMessageBox::Cancel);
+    } else {
             bool test=DM.supprimer(num_doss);
 
             if(test)
@@ -162,8 +170,9 @@ void MainWindow::on_pb_supp_clicked()
                 QMessageBox::critical(nullptr, QObject::tr("not ok"),
                             QObject::tr("échec suprresion.\n"
                                         "Click cancel to exit."), QMessageBox::Cancel);
-            ui->tabafficher->setModel(DM.afficher());}
-
+            ui->tabafficher->setModel(DM.afficher());
+    }
+}
 void MainWindow::on_pb_afficher_clicked()
 {
     ui->tabafficher->setModel (DM.afficher());
@@ -189,7 +198,12 @@ void MainWindow::on_pb_modif_clicked()
     int id_employe=ui->cin_emp->text().toInt();
 
    Dossier_medical DM(num_doss,espece,maladie,nom_animal,race,date_naiss,poid,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
-
+   if(DM.dossierExist(num_doss)==0)
+   {
+       QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                   QObject::tr("dossier nexiste.\n"
+                               "Click cancel to exit."), QMessageBox::Cancel);
+   } else {
 
          bool test=DM.modifier(num_doss,espece,maladie,nom_animal,race,date_naiss,poid,sexe, temperature,sterilisation,etat_vaccin,traitement,id_employe);
          if(test)
@@ -203,7 +217,7 @@ void MainWindow::on_pb_modif_clicked()
                   QMessageBox::critical(nullptr, QObject::tr("Modifier a echoué"),
                               QObject::tr("echec d'ajout !.\n"
                                           "Click Cancel to exit."), QMessageBox::Cancel);
-         } else {
+   }} else {
 
              QMessageBox::critical(nullptr, QObject::tr("not ok"),
 
@@ -211,7 +225,8 @@ void MainWindow::on_pb_modif_clicked()
 
                                      "Click cancel to exit."), QMessageBox::Cancel);
 
-         }
+
+    }
      }
 
 void MainWindow::on_trinum_clicked()
@@ -276,5 +291,25 @@ void MainWindow::on_tabafficher_clicked(const QModelIndex &index)
 
     // a coninuer
 
+      QString text ="dossier medicale details :"+ ui->tabafficher->model()->data(ui->tabafficher->model()->index(ui->tabafficher->currentIndex().row(),1)).toString()
+              +" "+ui->tabafficher->model()->data(ui->tabafficher->model()->index(ui->tabafficher->currentIndex().row(),2)).toString()
+              +" "+ui->tabafficher->model()->data(ui->tabafficher->model()->index(ui->tabafficher->currentIndex().row(),3)).toString()
+              +" "+ui->tabafficher->model()->data(ui->tabafficher->model()->index(ui->tabafficher->currentIndex().row(),4)).toString()
+              +" "+ui->tabafficher->model()->data(ui->tabafficher->model()->index(ui->tabafficher->currentIndex().row(),5)).toString()
+              +" "+ui->tabafficher->model()->data(ui->tabafficher->model()->index(ui->tabafficher->currentIndex().row(),6)).toString();
+      //text="user data";
+      using namespace qrcodegen;
+        // Create the QR Code object
+        QrCode qr = QrCode::encodeText( text.toUtf8().data(), QrCode::Ecc::MEDIUM );
+        qint32 sz = qr.getSize();
+        QImage im(sz,sz, QImage::Format_RGB32);
+          QRgb black = qRgb(  0,  0,  0);
+          QRgb white = qRgb(255,255,255);
+        for (int y = 0; y < sz; y++)
+          for (int x = 0; x < sz; x++)
+            im.setPixel(x,y,qr.getModule(x, y) ? black : white );
+        ui->qrcode->setPixmap( QPixmap::fromImage(im.scaled(256,256,Qt::KeepAspectRatio,Qt::FastTransformation),Qt::MonoOnly) );
 
 }
+
+

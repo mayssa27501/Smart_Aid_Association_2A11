@@ -2,11 +2,11 @@
 #define DOSSIER_MEDICAL_H
 #include <QString>
 #include <QDate>
-#include <QSqlQuery>
-
 #include <QtDebug>
 
 #include<QSqlQueryModel>
+
+#include <QSqlQuery>
 
 #include <QtSql/QSqlQueryModel>
 #include <QMainWindow>
@@ -18,6 +18,7 @@ public:
     Dossier_medical();
     Dossier_medical(int,QString,QString,QString,QString,QDate,double,QString,double,QString,QString,QString,int);
     int getnum_doss();
+    int dossierExist(int);
     QString getespece();
      QString getmaladie();
      QString getnom_animal();

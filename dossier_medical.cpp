@@ -118,7 +118,7 @@ bool Dossier_medical::supprimer(int num_doss)
      QString num_poid_string=QString::number(poid);
      QString num_temp_string=QString::number(temperature);
      QString id_employe_string=QString::number(id_employe);
-        query.prepare(" UPDATE DOSSIER_MEDICAL set num_doss=:NUM_DOSS ,espece=:ESPECE, maladie=:MALADIE ,nom_animal=:NOM_ANIMAL, race=:RACE, date_naiss=:DATE_NAISS,poid=:POID,sexe=:SEXE,temperature=:TEMPERATURE,sterilisation=:STERILISATION,etat_vaccin=:ETAT_VACCIN,traitement=:TRAITEMENT,id_employe=:ID_EMPLOYE where num_doss=:NUM_DOSS");
+        query.prepare(" UPDATE DOSSIER_MEDICAL set espece=:ESPECE, maladie=:MALADIE ,nom_animal=:NOM_ANIMAL, race=:RACE, date_naiss=:DATE_NAISS,poid=:POID,sexe=:SEXE,temperature=:TEMPERATURE,sterilisation=:STERILISATION,etat_vaccin=:ETAT_VACCIN,traitement=:TRAITEMENT,id_employe=:ID_EMPLOYE where num_doss=:NUM_DOSS");
         query.bindValue(":NUM_DOSS", numD_string);
         query.bindValue(":ESPECE", espece);
         query.bindValue(":MALADIE", maladie);
@@ -215,4 +215,14 @@ bool Dossier_medical::supprimer(int num_doss)
      table->setModel(model);
      table->show();
 
+ }
+
+ int Dossier_medical::dossierExist(int id)
+ {
+     QString idS = QString::number(id);
+     QSqlQueryModel * model=new QSqlQueryModel();
+     model->setQuery("select * from DOSSIER_MEDICAL wHERE NUM_DOSS = "+idS);
+
+
+     return model->rowCount();
  }
