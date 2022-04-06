@@ -37,6 +37,7 @@ public:
     QSqlQueryModel * triernom();
     QSqlQueryModel * trierdate();
     void recherche(QTableView * tabl, int,QString,QString);
+    void telechargerPDF();
 
 private:
     int id_contrat;

@@ -43,7 +43,12 @@ private slots:
 
     void showtime();
 
-    void on_archiver_clicked();
+    void on_his_clicked();
+
+    void on_pdf_clicked();
+
+
+    void on_imprimer2_clicked();
 
 private:
     Ui::MainWindow *ui;

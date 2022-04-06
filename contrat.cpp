@@ -3,6 +3,10 @@
 #include <QtDebug>
 #include <QSqlQueryModel>
 #include <QObject>
+#include <QPdfWriter>
+#include <QPainter>
+#include<QPrintDialog>
+#include<QPrinter>
 
 
 
@@ -159,5 +163,47 @@ void Contrat::recherche(QTableView * table ,int id_contrat,QString nom, QString 
     model->setQuery(*query);
     table->setModel(model);
     table->show();
+
+}
+
+void  Contrat::telechargerPDF()
+{
+
+
+                     QPdfWriter pdf("C:/Atelier_Connexion/export_pdf.pdf");
+
+                     QPainter painter(&pdf);
+                    int i = 4000;
+                         painter.setPen(Qt::red);
+                         painter.setFont(QFont("Arial", 30));
+                         painter.drawText(1100,1200,"CONTRAT");
+                         painter.setPen(Qt::black);
+                         painter.setFont(QFont("Arial",14));
+                         painter.drawRect(100,100,7300,2600);
+                         painter.drawRect(0,3000,9600,500);
+                         painter.setFont(QFont("Arial",11));
+                         painter.drawText(200,3300,"id_contrat");
+                         painter.drawText(1300,3300,"nom");
+                         painter.drawText(2200,3300,"prenom");
+                         painter.drawText(3200,3300,"email");
+                         painter.drawText(5300,3300,"date_contrat");
+                         painter.drawText(7000,3300,"cin_employe");
+                         painter.drawText(8100,3300,"num_dossier");
+
+                         QSqlQuery query;
+                         query.prepare("select * from CONTRAT");
+                         query.exec();
+                         while (query.next())
+                         {
+                             painter.drawText(200,i,query.value(0).toString());
+                             painter.drawText(1300,i,query.value(1).toString());
+                             painter.drawText(2200,i,query.value(2).toString());
+                             painter.drawText(3200,i,query.value(3).toString());
+                             painter.drawText(5300,i,query.value(4).toString());
+                             painter.drawText(7700,i,query.value(5).toString());
+                             painter.drawText(8700,i,query.value(6).toString());
+
+                            i = i + 500;
+                         }
 
 }

@@ -13,6 +13,7 @@
 #include<QPrintDialog>
 #include <QSystemTrayIcon>
 #include <QTimer>
+#include <QPdfWriter>
 
 
 Contrat C;
@@ -112,8 +113,20 @@ bool test=C.ajouter();
            if(test)
            {
                msgBox.setText("ajout avec succes");
-               H.saveajouter();
-           msgBox.exec();
+               QFile f("C:/Atelier_Connexion/historique.txt");
+                   if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+                   {
+                   QMessageBox::warning(this,"title","file not open");
+                   }
+                   QTextStream outt(&f);
+                   QString text = "  ajouter \r\n";
+                   QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+                   outt << sDate;
+                   outt << text ;
+                   f.flush();
+                   f.close();
+                   QString strStream;
+                   QTextStream out(&strStream);           msgBox.exec();
            }
            else
            {
@@ -135,8 +148,20 @@ void MainWindow::on_pb_supp_clicked()
         bool test=C.supprimer(id);
 
         if(test){
-            H.savesupp();
-            QMessageBox::information(nullptr, QObject::tr("ok"),
+            QFile f("C:/Atelier_Connexion/historique.txt");
+                if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+                {
+                QMessageBox::warning(this,"title","file not open");
+                }
+                QTextStream outt(&f);
+                QString text = "  supprimer \r\n";
+                QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+                outt << sDate;
+                outt << text ;
+                f.flush();
+                f.close();
+                QString strStream;
+                QTextStream out(&strStream);            QMessageBox::information(nullptr, QObject::tr("ok"),
                         QObject::tr("supression effectué .\n"
                                     "Click Ok to exit."), QMessageBox::Ok);}
         else
@@ -177,8 +202,20 @@ void MainWindow::on_pb_modifier_clicked()
       if(test)
 
     {ui->tableView->setModel(C.afficher());
-    H.savemodifier();
-    QMessageBox::information(nullptr, QObject::tr("Modifier avec succées "),
+          QFile f("C:/Atelier_Connexion/historique.txt");
+              if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+              {
+              QMessageBox::warning(this,"title","file not open");
+              }
+              QTextStream outt(&f);
+              QString text = "  modifier \r\n";
+              QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+              outt << sDate;
+              outt << text ;
+              f.flush();
+              f.close();
+              QString strStream;
+              QTextStream out(&strStream);    QMessageBox::information(nullptr, QObject::tr("Modifier avec succées "),
 
                       QObject::tr("invite modifiée.\n"
 
@@ -207,27 +244,78 @@ void MainWindow::on_pb_modifier_clicked()
 void MainWindow::on_tr1_clicked()
 {
 ui->tableView->setModel(C.trierid());
-H.savetri1();
+QFile f("C:/Atelier_Connexion/historique.txt");
+    if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+    {
+    QMessageBox::warning(this,"title","file not open");
+    }
+    QTextStream outt(&f);
+    QString text = "  tri par id \r\n";
+    QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+    outt << sDate;
+    outt << text ;
+    f.flush();
+    f.close();
+    QString strStream;
+    QTextStream out(&strStream);
 }
 
 void MainWindow::on_tr2_clicked()
 {
 ui->tableView->setModel(C.triernom());
-H.savetri2();
+QFile f("C:/Atelier_Connexion/historique.txt");
+    if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+    {
+    QMessageBox::warning(this,"title","file not open");
+    }
+    QTextStream outt(&f);
+    QString text = "  tri par nom \r\n";
+    QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+    outt << sDate;
+    outt << text ;
+    f.flush();
+    f.close();
+    QString strStream;
+    QTextStream out(&strStream);
 }
 
 void MainWindow::on_tr3_clicked()
 {
 ui->tableView->setModel(C.trierdate());
-H.savetri3();
-}
+QFile f("C:/Atelier_Connexion/historique.txt");
+    if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+    {
+    QMessageBox::warning(this,"title","file not open");
+    }
+    QTextStream outt(&f);
+    QString text = "  tri par date \r\n";
+    QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+    outt << sDate;
+    outt << text ;
+    f.flush();
+    f.close();
+    QString strStream;
+    QTextStream out(&strStream);}
 
 
 void MainWindow::on_cherche_li_textChanged(const QString &arg1)
 {
     Contrat C;
 
-
+    QFile f("C:/Atelier_Connexion/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  recherche \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+        QString strStream;
+        QTextStream out(&strStream);
 
     int id_contrat= ui->cherche_li->text().toInt();
 
@@ -240,7 +328,7 @@ void MainWindow::on_cherche_li_textChanged(const QString &arg1)
     if (ui->cherche_li->text().isEmpty())
 
     {
-    H.savecher();
+
         ui->tableView->setModel(C.afficher());
 }
 }
@@ -250,8 +338,22 @@ void MainWindow::on_cherche_li_textChanged(const QString &arg1)
 
 void MainWindow::on_trang_clicked()
 {
+    QFile f("C:/Atelier_Connexion/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  traduction anglais \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+        QString strStream;
+        QTextStream out(&strStream);
     QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
-    H.saveang();
+
         notifyIcon->show();
         notifyIcon->setIcon(QIcon("icone.png"));
 
@@ -273,7 +375,7 @@ void MainWindow::on_trang_clicked()
                            ui->tr2->setText("Sort by id");
                            ui->tr3->setText("Sort by date");
                            ui->cherche_li->setText("Search");
-                           ui->archiver->setText("Archive");
+                           ui->imprimer2->setText("Print2");
                            ui->imprimer->setText("Print");
                            ui->trfr->setText("Frensh");
                            ui->trang->setText("English");
@@ -281,8 +383,22 @@ void MainWindow::on_trang_clicked()
 
 void MainWindow::on_trfr_clicked()
 {
+    QFile f("C:/Atelier_Connexion/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  traduction français \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+        QString strStream;
+        QTextStream out(&strStream);
     QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
-    H.savefr();
+
         notifyIcon->show();
         notifyIcon->setIcon(QIcon("icone.png"));
 
@@ -304,7 +420,7 @@ void MainWindow::on_trfr_clicked()
                            ui->tr2->setText("Trie par id");
                            ui->tr3->setText("Trie par date");
                            ui->cherche_li->setText("Recherche");
-                           ui->archiver->setText("Archiver");
+                           ui->imprimer2->setText("Imprimer2");
                            ui->imprimer->setText("Imprimer");
                            ui->trfr->setText("Français");
                            ui->trang->setText("Anglais");
@@ -312,17 +428,133 @@ void MainWindow::on_trfr_clicked()
 
 void MainWindow::on_imprimer_clicked()
 {
-    H.saveimp();
-    QPrinter printer;
 
-        printer.setPrinterName("desiered printer name");
+    QFile f("C:/Atelier_Connexion/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  imprimer \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+        QString strStream;
+        QTextStream out(&strStream);
 
-      QPrintDialog dialog(&printer,this);
+                             const int rowCount = ui->tableView->model()->rowCount();
+                             const int columnCount = ui->tableView->model()->columnCount();
+                             QString TT = QDate::currentDate().toString("yyyy/MM/dd");
+                             out <<"<html>\n"
+                                   "<head>\n"
+                                    "<meta Content=\"Text/html; charset=Windows-1251\">\n"
+                                 << "<title>ERP - CONTRAT<title>\n "
+                                 << "</head>\n"
+                                 "<body bgcolor=#4c4c4c link=#5000A0>\n"
+                                 "<h1 style=\"text-align: center;\"><strong> ******LISTE DES CONTRATS ******"+TT+" </strong></h1>"
+                                 "<table style=\"text-align: center; font-size: 20px;\" border=1>\n "
+                                   "</br> </br>";
+                             // headers
+                             out << "<thead><tr bgcolor=#d6e5ff>";
+                             for (int column = 0; column < columnCount; column++)
+                                 if (!ui->tableView->isColumnHidden(column))
+                                     out << QString("<th>%1</th>").arg(ui->tableView->model()->headerData(column, Qt::Horizontal).toString());
+                             out << "</tr></thead>\n";
 
-        if(dialog.exec()== QDialog::Rejected)
+                             // data table
+                             for (int row = 0; row < rowCount; row++) {
+                                 out << "<tr>";
+                                 for (int column = 0; column < columnCount; column++) {
+                                     if (!ui->tableView->isColumnHidden(column)) {
+                                         QString data =ui->tableView->model()->data(ui->tableView->model()->index(row, column)).toString().simplified();
+                                         out << QString("<td bkcolor=0>%1</td>").arg((!data.isEmpty()) ? data : QString("&nbsp;"));
+                                     }
+                                 }
+                                 out << "</tr>\n";
+                             }
+                             out <<  "</table>\n"
+                                 "</body>\n"
+                                 "</html>\n";
 
-            return;
+                             QTextDocument *document = new QTextDocument();
+                             document->setHtml(strStream);
+
+                             QPrinter printer;
+
+                             QPrintDialog *dialog = new QPrintDialog(&printer, nullptr);
+                             if (dialog->exec() == QDialog::Accepted) {
+                                 document->print(&printer);
+                             }
+
+                             delete document;
+
 }
 
 
 
+
+void MainWindow::on_his_clicked()
+{
+    QFile f("C:/Atelier_Connexion/historique.txt");
+        if(!f.open(QFile::WriteOnly |QIODevice::Append | QFile::Text))
+        {
+        QMessageBox::warning(this,"title","file not open");
+        }
+        QTextStream outt(&f);
+        QString text = "  historique \r\n";
+        QString sDate = QDateTime::currentDateTime().toString("dddd dd MMMM yyyy hh:mm:ss.zzz :");
+        outt << sDate;
+        outt << text ;
+        f.flush();
+        f.close();
+        if(!f.open(QFile::ReadOnly | QFile::Text))
+        {
+            QMessageBox::warning(this,"title","file not open");
+                }
+                QTextStream in(&f);
+                QString textt = in.readAll();
+                ui->plainTextEdit->setPlainText(textt);
+                f.close();
+}
+
+void MainWindow::on_pdf_clicked()
+{
+
+    C.telechargerPDF();
+
+     QMessageBox::information(nullptr,QObject::tr("OK"),
+                QObject::tr("Téléchargement terminé"), QMessageBox::Cancel);
+
+
+}
+
+
+
+void MainWindow::on_imprimer2_clicked()
+{
+    H.saveimp();
+    QTextEdit parent;
+       parent.setText("We are the world!");
+       parent.show();
+
+       QString filename = QFileDialog::getOpenFileName(&parent,"Open File",QString(),"Pdf File(*.pdf)");
+       qDebug()<<"Print file name is "<<filename;
+       if(!filename.isEmpty()) {
+           if(QFileInfo(filename).suffix().isEmpty()) {
+               filename.append(".pdf");
+           }
+
+           QPrinter printer(QPrinter::HighResolution);
+           printer.setOutputFormat(QPrinter::PdfFormat);
+           printer.setOutputFileName(filename);
+           QPrintDialog*dlg = new QPrintDialog(&printer,&parent);
+           dlg->setWindowTitle(QObject::tr("Print Document"));
+
+           if(dlg->exec() == QDialog::Accepted) {
+               parent.print(&printer);
+           }
+           delete dlg;
+}
+}
