@@ -3,6 +3,7 @@
 
 #include <QDate>
 #include <QSqlQueryModel>
+#include <QTableView>
 
 
 #include <QString>
@@ -44,7 +45,16 @@ public:
     QSqlQueryModel* afficher();
 
     bool supprimer(int);
+
     bool modifier(int,QString,QString,float,QDate);
+
+    QSqlQueryModel * trierdate();
+
+    QSqlQueryModel * triertype();
+
+    QSqlQueryModel * triermontant();
+
+    void recherche(QTableView * tabl, int,QString,QString);
 
 
 private:

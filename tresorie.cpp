@@ -92,3 +92,62 @@ bool tresorie::modifier(int num_op,QString type,QString descriptive,float montan
        query.bindValue(":DATE_AJOUT",date_ajout);
        return query.exec();
 }
+
+QSqlQueryModel * tresorie::trierdate()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM TRESORIE ORDER BY DATE_AJOUT");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("NUM_OP"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("TYPE"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("DESCRIPTIVE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("MONTANT"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE_AJOUT"));
+
+    return model;
+}
+
+QSqlQueryModel * tresorie::triertype()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM TRESORIE ORDER BY TYPE");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("NUM_OP"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("TYPE"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("DESCRIPTIVE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("MONTANT"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE_AJOUT"));
+
+    return model;
+}
+
+QSqlQueryModel * tresorie::triermontant()
+{
+    QSqlQueryModel * model=new QSqlQueryModel();
+    model->setQuery("SELECT * FROM TRESORIE ORDER BY MONTANT");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("NUM_OP"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("TYPE"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("DESCRIPTIVE"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("MONTANT"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("DATE_AJOUT"));
+
+    return model;
+}
+
+void tresorie::recherche(QTableView * table ,int num_op,QString type, QString descriptive )
+{
+    QSqlQueryModel *model= new QSqlQueryModel();
+    QString num_op_string=QString::number(num_op);
+
+
+    QSqlQuery *query=new QSqlQuery;
+    query->prepare("select * from TRESORIE where NUM_OP like '%"+num_op_string+"%' or TYPE like '%"+type+"%' or DESCRIPTIVE like '%"+descriptive+"%' ;");
+
+
+    query->exec();
+    model->setQuery(*query);
+    table->setModel(model);
+    table->show();
+
+}
+
+
+

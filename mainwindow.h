@@ -22,6 +22,14 @@ private slots:
 
     void on_modif_btn_clicked();
 
+    void on_tri_type_clicked();
+
+    void on_tri_date_clicked();
+
+    void on_tri_montant_clicked();
+
+    void on_cherche_li_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
 };
