@@ -1,6 +1,6 @@
 #ifndef TRESORIE_H
 #define TRESORIE_H
-//
+
 #include <QDate>
 #include <QSqlQueryModel>
 
