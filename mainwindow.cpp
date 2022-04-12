@@ -32,6 +32,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_2->setModel(RH.afficher());
     ui->comboBox->setModel(RH.afficher());
 
+    int ret=A.connect_arduino(); // lancer la connexion à arduino
+    switch(ret){
+    case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+        break;
+    case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+       break;
+    case(-1):qDebug() << "arduino is not available";
+    }
+     QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+     //le slot update_label suite à la reception du signal readyRead (reception des données).
+
         ui->tableView_emploi->setModel(RH.afficher());
         ui->dateEdit_emploi->setDisplayFormat("d MMM yyyy");
         ui->dateTimeEdit_emploiS->setDisplayFormat("d MMM yyyy h:m");
@@ -75,7 +86,7 @@ void MainWindow::on_Ajouter_clicked()
         QDate DATE_NAISSANCE=ui->dateli->date();
         int TEL=ui->numero->text().toInt();
         double SALAIRE=ui->salaire->text().toDouble();
-        QString VILLE=ui->le_ville->text();
+        QString VILLE=ui->comboBox_4->currentText();
         int ID_DIRIGEANT=ui->cin_Dirgeant->text().toUInt();
 
 
@@ -289,14 +300,14 @@ void MainWindow::on_change_activated(const QString &arg1)
 
                 while(query.next())
                 {
-
+               ui->cin->setText(query.value(0).toString());
                ui->nom->setText(query.value(1).toString());
                 ui->prenom->setText(query.value(2).toString());
                 ui->metier->setText(query.value(3).toString());
                 ui->dateli->setDate(query.value(4).toDate());
                  ui->numero->setText(query.value(5).toString());
                  ui->salaire->setText(query.value(6).toString());
-                 ui->le_ville->setText(query.value(7).toString());
+                 ui->comboBox_4->setCurrentText(query.value(7).toString());
                  ui->cin_Dirgeant->setText(query.value(8).toString());
 
 }}
@@ -320,7 +331,7 @@ void MainWindow::on_modifer_btn_clicked()
     QDate DATE_NAISSANCE=ui->dateli->date();
     int TEL=ui->numero->text().toInt();
     double SALAIRE=ui->salaire->text().toDouble();
-    QString VILLE=ui->le_ville->text();
+    QString VILLE=ui->comboBox_4->currentText();
     int ID_DIRIGEANT=ui->cin_Dirgeant->text().toUInt();
 
 
@@ -420,32 +431,191 @@ void MainWindow::on_comboBox_activated(const QString &arg1)
                         { ui->textEdit->setText(query.value(7).toString());
 
 
-                            if  (ui->textEdit->toPlainText()== "tunis")
+                            if  (ui->textEdit->toPlainText()== "Tunis")
                                         {ui->label_pic->clear();
 
-                                  QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/maptunis.png");
+                                  QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Tunis.jpg");
                                  int w = ui->label_pic->width();
                                  int h = ui->label_pic->height();
                                   ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
                               }
-                           else if  (ui->textEdit->toPlainText()== "mahdia")
+                           else if  (ui->textEdit->toPlainText()== "Mahdia")
                                         {ui->label_pic->clear();
 
-                                  QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/mapmahdia.png");
+                                  QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Mahdia.jpg");
                                  int w = ui->label_pic->width();
                                  int h = ui->label_pic->height();
                                   ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
                               }
-                            else if  (ui->textEdit->toPlainText()== "bizerte")
+                            else if  (ui->textEdit->toPlainText()== "Bizerte")
                                          {ui->label_pic->clear();
 
-                                   QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/mapbizerte.png");
+                                   QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Bizerte.jpg");
                                   int w = ui->label_pic->width();
                                   int h = ui->label_pic->height();
                                    ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
                                }
+                            else if  (ui->textEdit->toPlainText()== "Ariana")
+                                         {ui->label_pic->clear();
 
-                                 else
+                                   QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Ariana.jpg");
+                                  int w = ui->label_pic->width();
+                                  int h = ui->label_pic->height();
+                                   ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                               }
+                            else if  (ui->textEdit->toPlainText()== "Beja")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Beja.png");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Gabes")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Gabes.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Gafsa")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Gafsa.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Jendouba")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Jendouba.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Kairouan")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Kairouan.png");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Kasserine")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Kasserine.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Kebili")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Kebili.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Kef")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Kef.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Manouba")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Manouba.png");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Medenine")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Medenine.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Monastir")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Monastir.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Nabeul")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Nabeul.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Sfax")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Sfax.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "SidiBouzid")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Sidibouzid.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Siliana")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Siliana.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Sousse")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Soussa.png");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Tataouine")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Tataouine.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Tozeur")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Tozeur.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                            else if  (ui->textEdit->toPlainText()== "Zaghouan")
+                            {ui->label_pic->clear();
+
+                      QPixmap pix("C:/Users/dalys/OneDrive/Bureau/Atelier_Connexion/Maps/Zaghouan.jpg");
+                     int w = ui->label_pic->width();
+                     int h = ui->label_pic->height();
+                      ui->label_pic->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+                  }
+                      else
                                  {
                                      QMessageBox msgBox;
 
@@ -469,4 +639,18 @@ void MainWindow::on_pushButton_2_clicked()
 {
     QString link="https://web.skype.com/";
     QDesktopServices::openUrl(QUrl(link));
+}
+
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    A.write_to_arduino("1"); //envoyer 1 à arduino
+
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    A.write_to_arduino("0"); //envoyer 0 à arduino
+
 }

@@ -235,7 +235,7 @@ border-bottom:1px solid  #717072;
 </string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -342,7 +342,7 @@ color: rgb(255, 255, 255);
         <widget class="QLineEdit" name="cin">
          <property name="geometry">
           <rect>
-           <x>220</x>
+           <x>198</x>
            <y>50</y>
            <width>113</width>
            <height>22</height>
@@ -355,7 +355,7 @@ color: rgb(255, 255, 255);
         <widget class="QLineEdit" name="nom">
          <property name="geometry">
           <rect>
-           <x>220</x>
+           <x>194</x>
            <y>100</y>
            <width>113</width>
            <height>22</height>
@@ -368,7 +368,7 @@ color: rgb(255, 255, 255);
         <widget class="QLineEdit" name="prenom">
          <property name="geometry">
           <rect>
-           <x>220</x>
+           <x>200</x>
            <y>157</y>
            <width>113</width>
            <height>22</height>
@@ -381,7 +381,7 @@ color: rgb(255, 255, 255);
         <widget class="QLineEdit" name="metier">
          <property name="geometry">
           <rect>
-           <x>220</x>
+           <x>200</x>
            <y>207</y>
            <width>113</width>
            <height>22</height>
@@ -420,7 +420,7 @@ color: rgb(255, 255, 255);
         <widget class="QLineEdit" name="numero">
          <property name="geometry">
           <rect>
-           <x>220</x>
+           <x>200</x>
            <y>300</y>
            <width>113</width>
            <height>22</height>
@@ -446,7 +446,7 @@ color: rgb(255, 255, 255);
         <widget class="QLineEdit" name="salaire">
          <property name="geometry">
           <rect>
-           <x>218</x>
+           <x>200</x>
            <y>348</y>
            <width>113</width>
            <height>22</height>
@@ -507,9 +507,9 @@ background-color: rgb(2, 36, 64);
         <widget class="QComboBox" name="change">
          <property name="geometry">
           <rect>
-           <x>350</x>
+           <x>330</x>
            <y>40</y>
-           <width>91</width>
+           <width>111</width>
            <height>31</height>
           </rect>
          </property>
@@ -549,18 +549,133 @@ background-color: rgb(2, 36, 64);
           <string>VILLE</string>
          </property>
         </widget>
-        <widget class="QLineEdit" name="le_ville">
+        <widget class="QComboBox" name="comboBox_4">
          <property name="geometry">
           <rect>
-           <x>210</x>
+           <x>200</x>
            <y>400</y>
-           <width>113</width>
+           <width>131</width>
            <height>22</height>
           </rect>
          </property>
-         <property name="placeholderText">
-          <string/>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);</string>
          </property>
+         <item>
+          <property name="text">
+           <string>Tunis</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Ariana</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Beja</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Gabes</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Gafsa</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Jendouba</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Kairouan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Kasserine</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Kebili</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Kef</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Manouba</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Medenine</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Monastir</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Nabeul</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sfax</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SidiBouzid</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Siliana</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sousse</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Tataouine</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Tozeur</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Zaghouan</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Mahdia</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Bizerte</string>
+          </property>
+         </item>
         </widget>
        </widget>
        <widget class="QPushButton" name="pushButton_2">
@@ -749,8 +864,8 @@ background-color: rgb(2, 36, 64);
        <widget class="QPushButton" name="telechargerPDF">
         <property name="geometry">
          <rect>
-          <x>1050</x>
-          <y>160</y>
+          <x>1030</x>
+          <y>80</y>
           <width>121</width>
           <height>41</height>
          </rect>
@@ -778,6 +893,18 @@ background-color: rgb(2, 36, 64);
          <string>CLOCK</string>
         </property>
        </widget>
+       <zorder>label_8</zorder>
+       <zorder>telechargerPDF</zorder>
+       <zorder>affiche_tab</zorder>
+       <zorder>Supp_btn</zorder>
+       <zorder>label_12</zorder>
+       <zorder>tri_cin</zorder>
+       <zorder>tri_date</zorder>
+       <zorder>tri_salaire</zorder>
+       <zorder>cherche_li</zorder>
+       <zorder>Afficher_li</zorder>
+       <zorder>comboBox_2</zorder>
+       <zorder>Digital_clock_2</zorder>
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">
@@ -1048,6 +1175,64 @@ color: rgb(0, 0, 0);</string>
        <zorder>label_emploi</zorder>
        <zorder>Digital_clock_4</zorder>
        <zorder>comboBox_3</zorder>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>Page</string>
+       </attribute>
+       <widget class="QPushButton" name="pushButton_3">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>100</y>
+          <width>331</width>
+          <height>81</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>open</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_4">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>210</y>
+          <width>331</width>
+          <height>71</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="text">
+         <string>closed</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_22">
+        <property name="geometry">
+         <rect>
+          <x>-40</x>
+          <y>0</y>
+          <width>1921</width>
+          <height>1201</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="pixmap">
+         <pixmap>../../../Downloads/cat-black-background-background- (1).jpg</pixmap>
+        </property>
+       </widget>
+       <zorder>label_22</zorder>
+       <zorder>pushButton_3</zorder>
+       <zorder>pushButton_4</zorder>
       </widget>
      </widget>
     </widget>

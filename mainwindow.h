@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QDebug>
 #include "ressourcehumaine.h"
+#include "arduino.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -73,13 +75,19 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
     RESSOURCE_HUMAINE RH;
     bool dateTimeEditS_hadfocus = false;
     bool dateTimeEditE_hadfocus = false;
     void peupler_champs_modif(const QString& matricule);
-
+ Arduino A; // objet temporaire
 };
 
 #endif // MAINWINDOW_H
