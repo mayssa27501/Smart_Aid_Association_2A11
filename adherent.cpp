@@ -11,103 +11,87 @@ ADHERENT::ADHERENT()
      ID_ADHERENT=0;
     NOM_ADHERENT="";
     PRENOM_ADHERENT="" ;
-EMAIL="";
+    METIER_ADHERENT="" ;
+   SEXE="";
     COTISATION=0;
-    NUM_OPERATION=0;
 
 
 }
 
-ADHERENT::ADHERENT(int ID_ADHERENT,QString NOM_ADHERENT,QString  PRENOM_ADHERENT,QString EMAIL, float COTISATION,int NUM_OPERATION)
-{this->ID_ADHERENT=ID_ADHERENT;
-    this->NOM_ADHERENT=NOM_ADHERENT;
-    this-> PRENOM_ADHERENT= PRENOM_ADHERENT;
-this->EMAIL=EMAIL;
-    this->COTISATION=COTISATION;
-    this->NUM_OPERATION=NUM_OPERATION;}
-
-
-
+ADHERENT::ADHERENT(int ID_ADHERENT,QString NOM_ADHERENT,QString  PRENOM_ADHERENT,QString METIER_ADHERENT,QString SEXE, float COTISATION)
+{this->ID_ADHERENT=ID_ADHERENT;this->NOM_ADHERENT=NOM_ADHERENT;this-> PRENOM_ADHERENT= PRENOM_ADHERENT;this->METIER_ADHERENT=METIER_ADHERENT;this-> SEXE= SEXE;this->COTISATION=COTISATION;}
 int ADHERENT::getID_ADHERENT(){return ID_ADHERENT;}
 QString ADHERENT:: getNOM_ADHERENT(){return NOM_ADHERENT;}
 QString ADHERENT:: getPRENOM_ADHERENT(){return PRENOM_ADHERENT;}
-QString ADHERENT::getemail(){return EMAIL;}
+QString  ADHERENT::getMETIER_ADHERENT(){return METIER_ADHERENT;}
+QString  ADHERENT::getSEXE(){return SEXE;}
 float ADHERENT::getCOTISATION(){return COTISATION;}
-int ADHERENT::getNUM_OPERATION(){return NUM_OPERATION;}
 
 void ADHERENT::setID_ADHERENT(int ID_ADHERENT){this->ID_ADHERENT=ID_ADHERENT;}
 void ADHERENT::setNOM_ADHERENT(QString NOM_ADHERENT){this->NOM_ADHERENT=NOM_ADHERENT;}
 void ADHERENT::setPRENOM_ADHERENT(QString PRENOM_ADHERENT){this->PRENOM_ADHERENT=PRENOM_ADHERENT;}
-void ADHERENT::setemail(QString EMAIL){this->EMAIL=EMAIL;}
+void ADHERENT::setMETIER_ADHERENT(QString  METIER_ADHERENT){this-> METIER_ADHERENT= METIER_ADHERENT;}
+void ADHERENT::setSEXE(QString SEXE){this->SEXE=SEXE;}
 void ADHERENT::setCOTISATION(float  COTISATION){this-> COTISATION= COTISATION;}
 
-void ADHERENT::setNUM_OPERATION(int NUM_OPERATION){this->NUM_OPERATION=NUM_OPERATION;}
 
 bool ADHERENT::ajouter()//zedthaa
 {
 
 
-QSqlQuery query;//declarer requete
-//convertie int  en chain de caractere
-  QString NUM_OP_string= QString::number(NUM_OPERATION);
+QSqlQuery query;
 QString ID_ADHERENT_string= QString::number(ID_ADHERENT);
 QString COTISATION_string=QString::number(COTISATION);
-//n7thro l reqet
-query.prepare("INSERT INTO ADHERENT (ID_ADHERENT,NOM_ADHERENT,PRENOM_ADHERENT,EMAIL,COTISATION,NUM_OP) "
-              "VALUES (:ID_ADHERENT, :NOM_ADHERENT, :PRENOM_ADHERENT,:EMAIL,:COTISATION,:NUM_OP)");
+query.prepare("INSERT INTO ADHERENT (ID_ADHERENT,NOM_ADHERENT,PRENOM_ADHERENT,METIER_ADHERENT,SEXE,COTISATION) "
+              "VALUES (:ID_ADHERENT, :NOM_ADHERENT, :PRENOM_ADHERENT,:METIER_ADHERENT,:SEXE,:COTISATION)");
  //affecter le valeur dans bd
-//execution
 query.bindValue(":ID_ADHERENT",ID_ADHERENT_string);
 query.bindValue(":NOM_ADHERENT", NOM_ADHERENT);
 query.bindValue(":PRENOM_ADHERENT", PRENOM_ADHERENT);
- query.bindValue(":EMAIL", EMAIL);
-query.bindValue(":COTISATION", COTISATION_string);
-query.bindValue(":NUM_OP",NUM_OP_string);
+query.bindValue(":METIER_ADHERENT", METIER_ADHERENT);
+query.bindValue(":SEXE",SEXE);
+query.bindValue(":COTISATION",COTISATION_string);
 return query.exec();
 
 
 }
 
-QSqlQueryModel *ADHERENT::afficher()
+QSqlQueryModel * ADHERENT::afficher()
 { QSqlQueryModel * model=new QSqlQueryModel();
-
 
     model->setQuery("select * from ADHERENT");
     model->setHeaderData(0,Qt::Horizontal,QObject::tr("ID_ADHERENT"));
-    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM"));
-    model->setHeaderData(2,Qt::Horizontal,QObject::tr("PRENOM"));
-    model->setHeaderData(3,Qt::Horizontal,QObject::tr("COTISATION "));
-      model->setHeaderData(4,Qt::Horizontal,QObject::tr("NUM_OP"));
- model->setHeaderData(5,Qt::Horizontal,QObject::tr("EMAIL"));
+    model->setHeaderData(1,Qt::Horizontal,QObject::tr("NOM_ADHERENT"));
+    model->setHeaderData(2,Qt::Horizontal,QObject::tr("PRENOM_ADHERENT"));
+    model->setHeaderData(3,Qt::Horizontal,QObject::tr("METIER_ADHERENT "));
+    model->setHeaderData(4,Qt::Horizontal,QObject::tr("SEXE"));
+    model->setHeaderData(5,Qt::Horizontal,QObject::tr("COTISATION"));
 
     return  model;
 
 }
-
 bool ADHERENT::supprimer(int ID_ADHERENT)
 {
 
     QSqlQuery query;
+    QString res=QString::number(ID_ADHERENT);
     query.prepare("DELETE FROM ADHERENT WHERE ID_ADHERENT= :ID_ADHERENT");
-    query.bindValue(":ID_ADHERENT",ID_ADHERENT);
+    query.bindValue(0,ID_ADHERENT);
 
     return query.exec();
 
 }
-bool ADHERENT::modifier(int ID_ADHERENT,QString NOM_ADHERENT,QString PRENOM_ADHERENT,QString EMAIL,float COTISATION, int NUM_OPERATION){
+bool ADHERENT::modifier(int ID_ADHERENT,QString NOM_ADHERENT,QString PRENOM_ADHERENT,QString METIER_ADHERENT,QString SEXE,float COTISATION){
     QSqlQuery query;
     QString  ID_ADHERENT_string=QString::number( ID_ADHERENT);
     QString  COTISATION_string=QString::number( COTISATION);
-     QString  NUM_OPERATION_string=QString::number( NUM_OPERATION);
 
-       query.prepare(" UPDATE ADHERENT set NOM_ADHERENT=:NOM_ADHERENT,PRENOM_ADHERENT=:PRENOM_ADHERENT , EMAIL=:EMAIL, COTISATION=:COTISATION, NUM_OP=:NUM_OP where ID_ADHERENT=:ID_ADHERENT");
-
-       query.bindValue(":ID_ADHERENT",ID_ADHERENT);
+       query.prepare(" UPDATE ADHERENT set ID_ADHERENT=:ID_ADHERENT ,NOM_ADHERENT=:NOM_ADHERENT,PRENOM_ADHERENT=:PRENOM_ADHERENT ,METIER_ADHERENT=:METIER_ADHERENT, COTISATION=:COTISATION, SEXE=:SEXE where ID_ADHERENT=:ID_ADHERENT");
+       query.bindValue(":ID_ADHERENT",ID_ADHERENT_string);
        query.bindValue(":NOM_ADHERENT",NOM_ADHERENT);
        query.bindValue(":PRENOM_ADHERENT",PRENOM_ADHERENT);
-    query.bindValue(":EMAIL",EMAIL);
+       query.bindValue(":METIER_ADHERENT",METIER_ADHERENT);
  query.bindValue(":COTISATION",COTISATION_string);
-
-           query.bindValue(":NUM_OP",NUM_OPERATION_string);
+        query.bindValue(":SEXE",SEXE);
        return query.exec();
 }

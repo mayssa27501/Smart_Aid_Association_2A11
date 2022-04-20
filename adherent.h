@@ -12,34 +12,33 @@ class ADHERENT
 
 public:
    ADHERENT();
-    ADHERENT(int,QString,QString,QString,float,int);
+    ADHERENT(int,QString,QString,QString,QString,float);
     int getID_ADHERENT();
     QString getNOM_ADHERENT();
      QString getPRENOM_ADHERENT();
-QString getemail();
-
+     QString getMETIER_ADHERENT();
+     QString getSEXE();
     float getCOTISATION();
-    int getNUM_OPERATION();
 
 
      void setID_ADHERENT(int);
     void setNOM_ADHERENT(QString);
     void setPRENOM_ADHERENT(QString);
- void setemail(QString);
+     void setMETIER_ADHERENT(QString);
+    void setSEXE(QString);
     void setCOTISATION(float);
-    void setNUM_OPERATION(int);
 
     bool ajouter();
 QSqlQueryModel* afficher();
 bool supprimer(int);
-bool modifier(int,QString,QString,QString,float,int);
+bool modifier(int,QString,QString,QString,QString,float);
 
 
 
 private:
-    int ID_ADHERENT ,NUM_OPERATION;
-    QString NOM_ADHERENT, PRENOM_ADHERENT , EMAIL ;
-    double COTISATION;
+    int ID_ADHERENT;
+    QString NOM_ADHERENT, PRENOM_ADHERENT, METIER_ADHERENT,SEXE;
+    float COTISATION;
 
 
 };

@@ -1,6 +1,6 @@
 #ifndef DONNEUR_H
 #define DONNEUR_H
-#include <QTableView>
+
 #include <QString>
 #include<QSqlQueryModel>
 #include <QtSql/QSqlQuery>
@@ -13,38 +13,27 @@ class DONNEUR
 {
 public:
     DONNEUR();
-
-    DONNEUR(int,QString,QString,QString,QString, int);
+    DONNEUR(int,QString,QString,QString,QString);
     int getID_DONNEUR();
     QString getNOM();
      QString getPRENOM();
-     QString getemail();
-   QString getTYPE();
-int getNUM_OPERATION();
+     QString getMETIER();
+    QString getSEXE();
+
 
 
      void setID_DONNEUR(int);
     void setNOM(QString);
     void setPRENOM(QString);
-    void setemail(QString);
-     void setTYPE(QString);
-
-    void setNUM_OPERATION(int);
-     bool ajouter();
+     void setMETIER(QString);
+    void setSEXE(QString);
+     bool Ajouter();
      QSqlQueryModel* afficher();
-     QSqlQueryModel * triernom();
-       QSqlQueryModel * trierprenom();
-       QSqlQueryModel * trierid();
-     bool supprimer(int);
-     bool modifier(int,QString,QString,QString,QString,int);
-     //recherche
-QSqlQueryModel * recherche(QString id_donneur);
-QSqlQueryModel * rechercheN(QString nom);
-QSqlQueryModel * rechercheP(QString prenom);
-private:
-    int ID_DONNEUR ,NUM_OPERATION;
-    QString NOM, PRENOM,TYPE ,email ;
 
+
+private:
+    int ID_DONNEUR;
+    QString NOM, PRENOM, METIER, SEXE;
 
 
 
@@ -53,4 +42,3 @@ private:
 
 
 #endif // DONNEUR_H
-//DONNEUR D1(aeaze);
