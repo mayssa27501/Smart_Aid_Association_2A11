@@ -148,15 +148,15 @@ QSqlQueryModel * Stock::trierrace()
 
     return model;
 }
-void Stock::recherche(QTableView * table ,int ref,int espece, QString nom )
+void Stock::recherche(QTableView * table ,int ref,QString race, QString nom )
 {
     QSqlQueryModel *model= new QSqlQueryModel();
     QString ref_string=QString::number(ref);
-    QString espece_string=QString::number(espece);
+   // QString espece_string=QString::number(espece);
 
 
     QSqlQuery *query=new QSqlQuery;
-    query->prepare("select * from Stock where ref like '%"+ref_string+"%' or NOM like '%"+nom+"%' or espece like '%"+espece_string+"%' ;");
+    query->prepare("select * from Stock where ref like '%"+ref_string+"%' or NOM like '%"+nom+"%' or espece like '%"+race+"%' ;");
 
 
     query->exec();
@@ -184,5 +184,20 @@ QSqlQueryModel * Stock::getTRESORIER()
 {
     QSqlQueryModel * model= new QSqlQueryModel();
     model->setQuery("select * from TRESORIE");
+    return model;
+}
+bool Stock::envoyerM(int ID_EMP_DEST,QString contenu){
+    QSqlQuery query;
+    query.prepare("INSERT INTO MESSAGE (CONTENU,DATE_ENVOI,ref) "
+                        "VALUES (:ESPECE,:RACE,:ID_EMP)");
+    query.bindValue(":ESPECE", contenu);
+    query.bindValue(":RACE", QDate::currentDate());
+    query.bindValue(":ID_EMP", ID_EMP_DEST);
+    return    query.exec();
+}
+QSqlQueryModel * Stock::getstock()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * from STOCK");
     return model;
 }

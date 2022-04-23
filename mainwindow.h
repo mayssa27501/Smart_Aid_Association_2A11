@@ -16,6 +16,8 @@ public:
     bool controlSaisie();
      void Alert();
      void refresh();
+     void refresh1();
+     void clear3();
     ~MainWindow();
 
 private slots:
@@ -42,7 +44,8 @@ private slots:
 
     void on_spinBox_valueChanged(int arg1);
     void on_pushButton_envoyerMessage_clicked();
-
+void on_pb_envoyer_clicked();
+void on_tab_stock_clicked(const QModelIndex &index);
 
 private:
     Ui::MainWindow *ui;

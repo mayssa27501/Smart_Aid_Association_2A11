@@ -9,6 +9,7 @@
 #include <QTextStream>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QDesktopServices>
 Stock S;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -54,8 +55,101 @@ bool MainWindow::controlSaisie(){
     else
         return 1;
 }
+void MainWindow::clear3()
 
+{
+
+    ui->le_reference->clear();
+
+     ui->le_espece->clear();
+
+    ui->le_race->clear();
+
+    ui->le_nom->clear();
+
+     ui->le_categorie->clear();
+
+ ui->le_quantite->clear();
+  ui->le_delai->clear();
+
+
+}
 void MainWindow::on_pb_ajouter_clicked()
+
+{
+
+
+
+
+    if(!(ui->le_race->text().contains(QRegExp("^[A-Za-z]+$")))){
+
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+
+                    QObject::tr("nom invalide doit saisir seulment des chaine de caractere .\n"
+
+                                "Click cancel to exit."), QMessageBox::Cancel);}
+
+    else if(!(ui->le_nom->text().contains(QRegExp("^[A-Za-z]+$")))) {
+
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+
+                    QObject::tr("prenom invalide.\n"
+
+                                "Click cancel to exit."), QMessageBox::Cancel);
+
+
+    }
+
+    else {
+
+        int ref=ui->le_reference->text().toInt();
+        int espece=ui->le_espece->currentIndex();
+        QString race=ui->le_race->text();
+        QString nom=ui->le_nom->text();
+        int categorie=ui->le_categorie->currentIndex();
+        int quantite=ui->le_quantite->text().toInt();
+        QDate delai=ui->le_delai->date();
+
+
+
+
+         Stock S(ref ,espece ,race,nom,categorie,quantite,delai);
+
+
+
+          bool test=S.ajouter();
+
+                  QMessageBox msgBox;
+
+                     if(test)
+
+                     {
+
+                         msgBox.setText("ajout avec succes");
+
+
+                     msgBox.exec();
+
+                     clear3();
+
+
+                     }
+
+                     else
+
+                     {
+
+                         msgBox.setText("echec");
+
+                     msgBox.exec();
+
+                     }
+
+     ui->tab_stock->setModel(S.afficher());}
+
+
+}
+/*void MainWindow::on_pb_ajouter_clicked()
 {
     if (controlSaisie()){
     int ref=ui->le_reference->text().toInt();
@@ -85,8 +179,25 @@ void MainWindow::on_pb_ajouter_clicked()
                                QObject::tr("veuiller remplir tous les champs correctement.\n"
                                            "Click cancel to exit."), QMessageBox::Cancel);
 }
-}
+}*/
 
+
+void MainWindow::on_tab_stock_clicked(const QModelIndex &index)
+
+{
+
+
+    ui->le_reference->setText(ui->tab_stock->model()->data(ui->tab_stock->model()->index(index.row(),0)).toString());
+
+    ui->le_espece->setCurrentIndex(ui->tab_stock->model()->data(ui->tab_stock->model()->index(index.row(),1)).toInt());
+
+    ui->le_race->setText(ui->tab_stock->model()->data(ui->tab_stock->model()->index(index.row(),2)).toString());
+
+    ui->le_nom->setText(ui->tab_stock->model()->data(ui->tab_stock->model()->index(index.row(),3)).toString());
+ ui->le_categorie->setCurrentIndex(ui->tab_stock->model()->data(ui->tab_stock->model()->index(index.row(),4)).toInt());
+  ui->le_delai->setDate(ui->tab_stock->model()->data(ui->tab_stock->model()->index(index.row(),5)).toDate());
+    ui->le_quantite->setText(ui->tab_stock->model()->data(ui->tab_stock->model()->index(index.row(),6)).toString());
+}
 void MainWindow::on_pb_supprimer_clicked()
 {
     Stock S1; S1.setref(ui->le_supprimer->text().toInt());
@@ -172,9 +283,9 @@ void MainWindow::on_le_rechercher_textChanged(const QString &arg1)
 {
     Stock S;
     int ref= ui->le_rechercher->text().toInt();
-    int espece = ui->le_rechercher->text().toInt();
+     QString race = ui->le_rechercher->text();
     QString nom = ui->le_rechercher->text();
-   S.recherche(ui->tab_stock,ref,espece,nom);
+   S.recherche(ui->tab_stock,ref,race,nom);
     if (ui->le_rechercher->text().isEmpty())
     {
         ui->tab_stock->setModel(S.afficher());
@@ -231,6 +342,13 @@ void MainWindow::refresh()
 
 
 }
+void MainWindow::refresh1()
+{
+  ui->tab_stock->setModel(S.afficher());
+  ui->tableView_e->setModel(S.messagesEnvoyees());
+
+
+}
 void MainWindow::on_pushButton_envoyerMessage_clicked()
 {
     bool test = S.envoyerMessage(ui->comboBox_stock->currentText().toInt(),ui->plainTextEdit_message->toPlainText());
@@ -250,4 +368,22 @@ void MainWindow::on_pushButton_envoyerMessage_clicked()
                                 "Click Cancel to exit."), QMessageBox::Cancel);
 
 }
+void MainWindow::on_pb_envoyer_clicked()
+{
+    bool test = S.envoyerMessage(ui->comboBox->currentText().toInt(),ui->plainTextEdit->toPlainText());
+    //ui->comboBox_stock->clear();
+    ui->plainTextEdit->clear();
+    if(test)
+    {
+        refresh1();
+        QMessageBox::information(nullptr, QObject::tr("succes"),
+                    QObject::tr("message envoyé.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
 
+    }
+    else
+        QMessageBox::critical(nullptr, QObject::tr("fail"),
+                    QObject::tr("message non envoyé.\n"
+                                "Click Cancel to exit."), QMessageBox::Cancel);
+
+}

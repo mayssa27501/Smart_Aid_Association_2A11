@@ -32,10 +32,12 @@ public:
     QSqlQueryModel * triernom();
     QSqlQueryModel * triercategorie();
     QSqlQueryModel * trierrace();
-     void recherche(QTableView * table, int,int,QString);
+     void recherche(QTableView * table, int,QString,QString);
       bool envoyerMessage(int ,QString );
      QSqlQueryModel * messagesEnvoyees();
      QSqlQueryModel * getTRESORIER();
+      bool envoyerM(int ,QString );
+      QSqlQueryModel * getstock();
 
 private:
     int ref,quantite ,categorie ,espece;
