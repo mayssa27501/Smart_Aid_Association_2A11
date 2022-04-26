@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/back-cat.jpg</file>
+    </qresource>
+</RCC>
