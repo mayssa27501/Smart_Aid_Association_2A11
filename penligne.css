@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+html{
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 7px solid #6f6f6f;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-size: 7000px;
+    color: rgb(40, 15, 426);
+    padding: 100px;
+}
+button{
+
+color:rgb(175, 30, 38);/*coleur l paimentenligne*/
+opacity: 0.8px;
+text-transform: capitalize;
+letter-spacing: 10px;
+height: 100px;
+width: 700px;
+border-width: 2px;
+border-style: solid;
+border-color: rgb(122, 13, 22);
+border-top-left-radius: 20px;
+border-bottom-right-radius: 50px;
+font-size: 30pt;/*taille de carraux */
+}
+
+fieldset{
+
+    padding: 30px;
+    border-radius: 20px;
+    
+   
+}
+label{
+    color: rgb(180, 81, 81);
+border-bottom-right-radius: 50px;
+font-size: 25pt
+}
+button1{
+    color: rgb(146, 36, 36);
+
+}

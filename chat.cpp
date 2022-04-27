@@ -28,7 +28,6 @@ void DuarteCorporation::Chat::on_send_clicked()
 {
     QTextStream T(mSocket);
        T << ui->nickname->text() <<" : " << ui->message->text();
-       T << "ok ok ok ok ok ";
        mSocket->flush();
        ui->message->clear();
 }
@@ -36,9 +35,9 @@ void DuarteCorporation::Chat::on_send_clicked()
 void DuarteCorporation::Chat::on_bind_clicked()
 {
     DuMesengerConnectionDialog D (this);
-      // if(D.exec() == QDialog ::Rejected){
-      //     return;
-     //  }
+      if(D.exec() == QDialog ::Rejected){
+        return;
+      }
        mSocket->connectToHost("azerty",6000);
 
 }

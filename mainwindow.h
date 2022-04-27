@@ -11,6 +11,9 @@
 #include "tresorie.h"
 #include "chat.h"
 #include "stock.h"
+#include"adherent.h"
+#include"donneur.h"
+#include"stmp.h"
 using namespace DuarteCorporation;
 
 namespace Ui {
@@ -23,6 +26,8 @@ class MainWindow : public QMainWindow
 public:
      bool controlSaisie();
      bool controlSaisie1();
+     bool controlSaisieDonneur();
+     bool controlSaisieadherent();
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
      void clear3();
@@ -200,6 +205,94 @@ private slots:
 
     void on_le_rechercher_textChanged(const QString &arg1);
 
+    void on_pb_ajouter_a_clicked();
+    void clear();
+    void clear2();
+
+    void on_cotisation_clicked();
+
+    void on_tab_adherent_clicked(const QModelIndex &index);
+
+    void on_le_modif_a_clicked();
+
+    void on_pb_supprimer_a_clicked();
+
+    void on_pb_ajouter_d_clicked();
+
+    void on_t_nom_clicked();
+
+    void on_t_prenom_clicked();
+
+    void on_t_id_clicked();
+
+    void on_pb_suppr_d_clicked();
+
+    void on_le_mod_d_clicked();
+
+    void on_lien_recherche_textChanged(const QString &arg1);
+
+    void on_pushButton_10_clicked();
+
+    void on_pushButton_mail_a_clicked();
+
+    void on_tab_donneur_clicked(const QModelIndex &index);
+    void update_temperature();
+
+
+    void on_pushButton_9_clicked();
+
+    void on_n_pb_deco_5_clicked();
+
+    void on_n_pb_deco_9_clicked();
+
+    void on_n_pb_deco_6_clicked();
+
+    void on_n_pb_deco_clicked();
+
+    void on_n_pb_deco_2_clicked();
+
+    void on_n_pb_deco_3_clicked();
+
+    void on_n_pb_deco_8_clicked();
+
+    void on_n_pb_deco_7_clicked();
+
+    void on_n_pb_deco_4_clicked();
+
+    void on_combo_modif_activated(const QString &arg1);
+
+    void on_trang_2_clicked();
+
+    void on_trfr_2_clicked();
+
+    void on_trang_3_clicked();
+
+    void on_trfr_3_clicked();
+
+    void on_trang_4_clicked();
+
+    void on_trfr_4_clicked();
+
+    void on_trang_7_clicked();
+
+    void on_trfr_7_clicked();
+
+    void on_trang_6_clicked();
+
+    void on_trfr_6_clicked();
+
+    void on_trang_5_clicked();
+
+    void on_trfr_5_clicked();
+
+    void on_trang_9_clicked();
+
+    void on_trfr_9_clicked();
+
+    void on_trang_8_clicked();
+
+    void on_trfr_8_clicked();
+
 private:
     Ui::MainWindow *ui;
     RESSOURCE_HUMAINE RH;
@@ -215,6 +308,11 @@ private:
  Stock S;
  int Seuil;
  QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+ Smtp* smtp;
+  QString msg;
+  QString mail;
+ADHERENT AD;
+DONNEUR D;
 
 };
 

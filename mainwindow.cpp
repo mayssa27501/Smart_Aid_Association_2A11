@@ -27,8 +27,14 @@
 #include <QTextStream>
 #include <QSqlRecord>
 #include <QDesktopServices>
+#include <QtWidgets/QRadioButton>
+#include <QtSql/QSqlQueryModel>
+#include"QUrl"
+#include "stmp.h"
 
 RESSOURCE_HUMAINE RH;
+ADHERENT AD;
+DONNEUR D;
 Contrat C;
 Stock S;
 tresorie tr,trr;
@@ -52,6 +58,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox_2->setModel(RH.afficher());
     ui->comboBox->setModel(RH.afficher());
     ui->comboBox_5->setModel(DM.afficher());
+    ui->combo_sup->setModel(C.afficher());
+    ui->combo_modif->setModel(C.afficher());
 
 
     int ret=A.connect_arduino(); // lancer la connexion à arduino
@@ -84,9 +92,16 @@ MainWindow::MainWindow(QWidget *parent) :
          ui->le_quantite->setValidator(new QIntValidator(0, 999999, this));
        ui->tab_stock->setModel(S.afficher());
 
-
-
-
+       ui->tab_adherent->setModel(AD.afficher());
+        ui->tab_donneur->setModel(D.afficher());
+        ui->tableView_alerte->setModel(D.getAlertes());
+        QValidator *validator = new QIntValidator(1, 99999999, this); // pour les int
+       QValidator *validatorDouble = new QDoubleValidator(0.0, 999,2, this);
+        ui->le_id_d->setValidator(validator);
+        ui->num_op_d->setValidator(validator);
+        ui->le_id_a->setValidator(validator);
+        ui->id_tresorie_a->setValidator(validator);
+        ui->le_cotisation_a->setValidator(validatorDouble);
 }
 
 void MainWindow::showtime()
@@ -97,7 +112,12 @@ void MainWindow::showtime()
     ui->Digital_clock->setText(time_next);
     ui->Digital_clock_3->setText(time_next);
     ui->digital_clock->setText(time_next);
-
+    ui->Digital_clock_2->setText(time_next);
+    ui->Digital_clock_4->setText(time_next);
+    ui->Digital_clock_5->setText(time_next);
+    ui->Digital_clock_6->setText(time_next);
+    ui->Digital_clock_7->setText(time_next);
+    ui->Digital_clock_8->setText(time_next);
 
 }
 
@@ -239,21 +259,21 @@ void MainWindow::on_connecter_clicked()
                    ui->stackedWidget->setCurrentIndex(2);
                 }
                         //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                        else if(username == "yosra" && password == "yosra")
+                        else if(username == "mayssa" && password == "mayssa")
                         { QMessageBox::information(this, "Login", "Username and password is correct");
                    ui->stackedWidget->setCurrentIndex(3);
                 }
                             //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                            else if(username == "anas" && password == "anas")
+                            else if(username == "yosra" && password == "yosra")
                             { QMessageBox::information(this, "Login", "Username and password is correct");
                    ui->stackedWidget->setCurrentIndex(4);
                 }
                                 //hide(); mainwindow = new MainWindow(this); mainwindow->show(); }
-                                else if(username == "abrar" && password == "abrar")
+                                else if(username == "anas" && password == "anas")
                                 { QMessageBox::information(this, "Login", "Username and password is correct");
                    ui->stackedWidget->setCurrentIndex(5);
                 }
-                else if(username == "maysa" && password == "maysa")
+                else if(username == "abrar" && password == "abrar")
                     { QMessageBox::information(this, "Login", "Username and password is correct");
                       ui->stackedWidget->setCurrentIndex(6);
                       }
@@ -766,17 +786,20 @@ bool test=C.ajouter();
            msgBox.exec();
            }
     ui->tableView->setModel(C.afficher());
+    ui->combo_sup->setModel(C.afficher());
+    ui->combo_modif->setModel(C.afficher());
     }
     else {
         QMessageBox msgBox;
         msgBox.setText("echec veuillez remplir les champs correctement");
         msgBox.exec();
     }
+
 }
 
 void MainWindow::on_pb_supp_clicked()
 {
-    int id =ui->le_id->text().toInt();
+    int id =ui->combo_sup->currentText().toInt();
         bool test=C.supprimer(id);
 
         if(test){
@@ -793,7 +816,8 @@ void MainWindow::on_pb_supp_clicked()
                 f.flush();
                 f.close();
                 QString strStream;
-                QTextStream out(&strStream);            QMessageBox::information(nullptr, QObject::tr("ok"),
+                QTextStream out(&strStream);
+            QMessageBox::information(nullptr, QObject::tr("ok"),
                         QObject::tr("supression effectué .\n"
                                     "Click Ok to exit."), QMessageBox::Ok);}
         else
@@ -801,13 +825,17 @@ void MainWindow::on_pb_supp_clicked()
                         QObject::tr("échec suprresion.\n"
                                     "Click cancel to exit."), QMessageBox::Cancel);
         ui->tableView->setModel(C.afficher());
+        ui->combo_sup->setModel(C.afficher());
+        ui->combo_modif->setModel(C.afficher());
 }
+
+
 
 
 
 void MainWindow::on_pb_modifier_clicked()
 {
-    if (controlSaisie()){
+    if (controlSaisie1()){
     int id_contrat=ui->le_id->text().toInt();
 
      QString nom=ui->le_nom->text();
@@ -870,6 +898,9 @@ void MainWindow::on_pb_modifier_clicked()
         msgBox.setText("echec veuillez remplir les champs correctement");
         msgBox.exec();
     }
+    ui->tableView->setModel(C.afficher());
+    ui->combo_sup->setModel(C.afficher());
+    ui->combo_modif->setModel(C.afficher());
 }
 
 
@@ -1007,7 +1038,6 @@ void MainWindow::on_trang_clicked()
                            ui->tr2->setText("Sort by id");
                            ui->tr3->setText("Sort by date");
                            ui->cherche_li->setText("Search");
-                           ui->imprimer2->setText("Print2");
                            ui->imprimer->setText("Print");
                            ui->trfr->setText("Frensh");
                            ui->trang->setText("English");
@@ -1052,7 +1082,6 @@ void MainWindow::on_trfr_clicked()
                            ui->tr2->setText("Trie par id");
                            ui->tr3->setText("Trie par date");
                            ui->cherche_li->setText("Recherche");
-                           ui->imprimer2->setText("Imprimer2");
                            ui->imprimer->setText("Imprimer");
                            ui->trfr->setText("Français");
                            ui->trang->setText("Anglais");
@@ -1757,12 +1786,12 @@ void MainWindow::on_stat_clicked()
 
 void MainWindow::on_pushButton_6_clicked()
 {
-    A.write_to_arduino("1"); //envoyer 1 à arduino
+    A.write_to_arduino("3"); //envoyer 1 à arduino
 }
 
 void MainWindow::on_pushButton_7_clicked()
 {
-    A.write_to_arduino("0"); //envoyer 0 à arduino
+    A.write_to_arduino("4"); //envoyer 0 à arduino
 }
 
 void MainWindow::on_pushButton_8_clicked()
@@ -2035,4 +2064,775 @@ void MainWindow::on_le_rechercher_textChanged(const QString &arg1)
     {
         ui->tab_stock->setModel(S.afficher());
     }
+}
+// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+bool MainWindow::controlSaisieadherent(){
+
+    if (
+            !(ui->le_nom_a->text().contains(QRegExp("^[A-Za-z]+$"))) || //frme mn google ( regex )
+            !(ui->le_prenom_a->text().contains(QRegExp("^[A-Za-z]+$"))) ||
+
+            ui->id_tresorie_a->text().isEmpty() ||
+            ui->id_tresorie_a->text().toInt() == 0 ||
+            ui->le_id_a->text().isEmpty() ||// si vide
+            ui->le_id_a->text().toInt() == 0 ) //si contient 7arff (7arfa kif yosraa  sahbtyyy )
+
+        return 0;
+    else
+        return 1;
+}
+
+
+void MainWindow::on_pb_ajouter_a_clicked()
+{
+    if(!(ui->le_nom_a->text().contains(QRegExp("^[A-Za-z]+$")))){
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                    QObject::tr("nom invalide doit saisir seulment des chaine de caractere .\n"
+                                "Click cancel to exit."), QMessageBox::Cancel);}
+    else if(!(ui->le_prenom_a->text().contains(QRegExp("^[A-Za-z]+$")))) {
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                    QObject::tr("prenom invalide.\n"
+                                "Click cancel to exit."), QMessageBox::Cancel);
+
+    }
+    else {
+        int ID_ADHERENT=ui->le_id_a->text().toInt();
+          QString NOM_ADHERENT=ui->le_nom_a->text();
+          QString PRENOM_ADHERENT=ui->le_prenom_a->text();
+           double COTISATION=ui->le_cotisation_a->text().toDouble();
+           int NUM_OP = ui->id_tresorie_a->text().toInt();
+           QString EMAIL=ui->email_a_2->text();
+
+
+
+
+          ADHERENT AD(ID_ADHERENT,NOM_ADHERENT,PRENOM_ADHERENT ,COTISATION,NUM_OP,EMAIL);
+
+
+          bool test=AD.ajouter();
+                  QMessageBox msgBox;
+                     if(test)
+                     {
+                         msgBox.setText("ajout avec succes");
+
+                     msgBox.exec();
+                     clear2();
+                     on_cotisation_clicked();
+                     }
+                     else
+                     {
+                         msgBox.setText("echec");
+                     msgBox.exec();
+                     }
+
+     ui->tab_adherent->setModel(AD.afficher());}
+}
+
+void MainWindow::clear2()
+{
+    ui->le_id_a->clear();
+     ui->le_nom_a->clear();
+    ui->le_prenom_a->clear();
+    ui->le_cotisation_a->clear();
+
+    ui->id_tresorie_a->clear();
+    ui->email_a_2->clear();
+
+}
+
+void MainWindow::on_cotisation_clicked()
+{
+    QString link="file:///C:/Users/dalys/OneDrive/Bureau/Smart_Aid_Association_2A11-master/Smart_Aid_Association_2A11-master/penlgine.html";
+        QDesktopServices::openUrl(QUrl(link));
+}
+
+void MainWindow::on_tab_adherent_clicked(const QModelIndex &index)
+{
+    ui->le_id_a->setText(ui->tab_adherent->model()->data(ui->tab_adherent->model()->index(index.row(),0)).toString());
+    ui->le_nom_a->setText(ui->tab_adherent->model()->data(ui->tab_adherent->model()->index(index.row(),1)).toString());
+    ui->le_prenom_a->setText(ui->tab_adherent->model()->data(ui->tab_adherent->model()->index(index.row(),2)).toString());
+    ui->le_cotisation_a->setText(ui->tab_adherent->model()->data(ui->tab_adherent->model()->index(index.row(),3)).toString());
+    ui->id_tresorie_a->setText(ui->tab_adherent->model()->data(ui->tab_adherent->model()->index(index.row(),4)).toString());
+    ui->email_a_2->setText(ui->tab_adherent->model()->data(ui->tab_adherent->model()->index(index.row(),5)).toString());
+
+}
+
+void MainWindow::on_le_modif_a_clicked()
+{
+    int ID_ADHERENT=ui->le_id_a->text().toInt();
+            QString NOM_ADHERENT=ui->le_nom_a->text();
+            QString PRENOM_ADHERENT=ui->le_prenom_a->text();
+            float COTISATION=ui->le_cotisation_a->text().toFloat();
+int NUM_OPERATION=ui->id_tresorie_a->text().toInt();
+QString EMAIL=ui->email_a_2->text();
+
+               ADHERENT AD(ID_ADHERENT,NOM_ADHERENT,PRENOM_ADHERENT,  COTISATION ,NUM_OPERATION,EMAIL);
+
+
+             bool test=AD.modifier(ID_ADHERENT,NOM_ADHERENT,PRENOM_ADHERENT, COTISATION ,NUM_OPERATION,EMAIL);
+             if(test)
+           {
+                 ui->tab_adherent->setModel(AD.afficher());
+           QMessageBox::information(nullptr, QObject::tr("Modifier avec succées "),
+                             QObject::tr("invite modifiée.\n"
+                                         "Click ok to exit."), QMessageBox::Ok);
+             clear2();
+
+           }
+             else{
+                 QMessageBox::critical(nullptr, QObject::tr("Modifier a echoué"),
+                             QObject::tr("echec d'ajout !.\n"
+                                         "Click Cancel to exit."), QMessageBox::Cancel);}
+}
+
+void MainWindow::on_pb_supprimer_a_clicked()
+{
+    int ID_ADHERENT=ui->le_id_a->text().toInt();
+        bool test=AD.supprimer(ID_ADHERENT);
+
+        if(test)
+        {
+              clear2();
+            QMessageBox::information(nullptr, QObject::tr("ok"),
+                        QObject::tr("supression effectué .\n"
+                                    "Click Ok to exit."), QMessageBox::Ok);}
+        else{
+            QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                        QObject::tr("échec suprresion.\n"
+                                    "Click cancel to exit."), QMessageBox::Cancel);}
+        ui->tab_adherent->setModel(AD.afficher());
+
+}
+// ////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+bool MainWindow::controlSaisieDonneur(){
+
+    if (
+            !(ui->le_nom_d->text().contains(QRegExp("^[A-Za-z]+$"))) || //frme mn google ( regex )
+            !(ui->le_prenom_d->text().contains(QRegExp("^[A-Za-z]+$"))) ||
+
+            ui->num_op_d->text().isEmpty() ||
+            ui->num_op_d->text().toInt() == 0 ||
+            ui->le_id_d->text().isEmpty() ||
+            ui->le_id_d->text().toInt() == 0
+             )
+        return 0;
+    else
+        return 1;
+}
+
+
+void MainWindow::on_pb_ajouter_d_clicked()
+{
+    //pour nom tkharjena nom valide
+    if(!(ui->le_nom_d->text().contains(QRegExp("^[A-Za-z]+$")))){
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                    QObject::tr("nom invalide doit saisir seulment des chaine de caractere .\n"
+                                "Click cancel to exit."), QMessageBox::Cancel);
+    }else if(!(ui->le_prenom_d->text().contains(QRegExp("^[A-Za-z]+$")))) {
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                    QObject::tr("prenom invalide.\n"
+                                "Click cancel to exit."), QMessageBox::Cancel);
+    }
+    else {
+    int ID_DONNEUR=ui->le_id_d->text().toInt();
+      QString NOM=ui->le_nom_d->text();
+      QString PRENOM=ui->le_prenom_d->text();
+            QString TYPE=ui->type_d->currentText();
+    int NUM_OPERATION=ui->num_op_d->text().toInt();
+    QString EMAIL=ui->email_d_2->text();
+
+
+
+
+      DONNEUR D(ID_DONNEUR,NOM,PRENOM,TYPE, NUM_OPERATION,EMAIL);
+
+
+      bool test=D.ajouter();
+              QMessageBox msgBox;
+                 if(test)
+                 {
+                     msgBox.setText("ajout avec succes");
+
+                 msgBox.exec();
+                 clear();
+                 }
+                 else
+                 {
+                     msgBox.setText("echec");
+                 msgBox.exec();
+                 }
+ ui->tab_donneur->setModel(D.afficher());}
+ // mtaaa cntrl de saisiirrr
+}
+
+void MainWindow::on_t_nom_clicked()
+{
+    ui->tab_donneur->setModel(D.triernom());
+
+}
+
+void MainWindow::on_t_prenom_clicked()
+{
+    ui->tab_donneur->setModel(D.trierprenom());
+
+}
+
+void MainWindow::on_t_id_clicked()
+{
+    ui->tab_donneur->setModel(D.trierid());
+
+}
+
+void MainWindow::on_pb_suppr_d_clicked()
+{
+    //yjiblna donneur ily aandu id ily tnfskhooh
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * from DONNEUR WHERE ID_DONNEUR="+ui->le_id_d->text());
+//si id vide oou bien 0 ou bien
+    if(ui->le_id_d->text().isEmpty() || model->rowCount() == 0)
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                    QObject::tr("donner un id valide.\n"
+                                "Click cancel to exit."), QMessageBox::Cancel);
+    else
+
+        {
+            int ID_DONNEUR =ui->le_id_d->text().toInt();
+                bool test=D.supprimer(ID_DONNEUR);
+
+                if(test)
+                    QMessageBox::information(nullptr, QObject::tr("ok"),
+                                QObject::tr("supression effectué .\n"
+                                            "Click Ok to exit."), QMessageBox::Ok);
+
+                else
+                    QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                                QObject::tr("échec suprresion.\n"
+                                            "Click cancel to exit."), QMessageBox::Cancel);
+                ui->tab_donneur->setModel(D.afficher());
+                clear();
+        }
+
+}
+
+void MainWindow::on_le_mod_d_clicked()
+{
+    if (controlSaisieDonneur()){
+    int ID_DONNEUR=ui->le_id_d->text().toInt();
+            QString NOM=ui->le_nom_d->text();
+            QString PRENOM=ui->le_prenom_d->text();
+            QString TYPE=ui->type_d->currentText();
+
+ int NUM_OPERATION=ui->num_op_d->text().toInt();
+
+ QString EMAIL=ui->email_d_2->text();
+
+               DONNEUR D(ID_DONNEUR,NOM,PRENOM,TYPE ,NUM_OPERATION, EMAIL );
+
+
+             bool test=D.modifier(ID_DONNEUR,NOM,PRENOM,TYPE,NUM_OPERATION,EMAIL);
+             if(test)
+           {
+                 ui->tab_donneur->setModel(D.afficher());
+           QMessageBox::information(nullptr, QObject::tr("Modifier avec succées "),
+                             QObject::tr("invite modifiée.\n"
+                                         "Click ok to exit."), QMessageBox::Ok);
+           clear();
+
+           }
+             else
+             {
+                 QMessageBox::critical(nullptr, QObject::tr("Modifier a echoué"),
+                             QObject::tr("echec d'ajout !.\n"
+                                         "Click Cancel to exit."), QMessageBox::Cancel);}}
+    else {
+        QMessageBox::critical(nullptr, QObject::tr("not ok"),
+                    QObject::tr("veuiller remplir tous les champs correctement.\n"
+                                "Click cancel to exit."), QMessageBox::Cancel);}
+
+}
+
+void MainWindow::on_lien_recherche_textChanged(const QString &arg1)
+{
+    ui->tab_donneur->setModel(D.recherche(arg1));
+
+}
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    A.write_to_arduino(("5"));//output
+
+}
+
+void MainWindow::on_pushButton_mail_a_clicked()
+{
+    smtp = new Smtp("aveaveyro15@gmail.com" , "ellaba200", "smtp.gmail.com",465);
+        connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+        msg=ui->message_mail->toPlainText();
+
+        smtp->sendMail("ilyes_test",ui->a_mail->text(),ui->objet_mail->text(),msg);
+
+        QMessageBox::information(nullptr, QObject::tr("SENT"),
+                                 QObject::tr("Email Sended Successfully.\n"
+                                             "Click Cancel to exit."), QMessageBox::Cancel);
+}
+
+void MainWindow::clear()
+{
+    ui->le_id_d->clear();
+     ui->le_nom_d->clear();
+    ui->le_prenom_d->clear();
+
+    ui->num_op_d->clear();
+    ui->email_d_2->clear();
+
+}
+
+
+void MainWindow::on_tab_donneur_clicked(const QModelIndex &index)
+{
+    ui->le_id_d->setText(ui->tab_donneur->model()->data(ui->tab_donneur->model()->index(index.row(),0)).toString());
+    ui->le_nom_d->setText(ui->tab_donneur->model()->data(ui->tab_donneur->model()->index(index.row(),1)).toString());
+    ui->le_prenom_d->setText(ui->tab_donneur->model()->data(ui->tab_donneur->model()->index(index.row(),2)).toString());
+    ui->type_d->setCurrentText(ui->tab_donneur->model()->data(ui->tab_donneur->model()->index(index.row(),3)).toString());
+    ui->num_op_d->setText(ui->tab_donneur->model()->data(ui->tab_donneur->model()->index(index.row(),4)).toString());
+    ui->email_d_2->setText(ui->tab_donneur->model()->data(ui->tab_donneur->model()->index(index.row(),5)).toString());
+
+}
+
+
+void MainWindow::update_temperature()
+{
+   if (A.read_from_arduino()!="")
+       //
+      {
+     /*  QMessageBox::critical(nullptr, QObject::tr("gaz"),
+                   QObject::tr("alerte gaz!.\n"
+                               "Click Cancel to exit."), QMessageBox::Cancel);*/
+
+       QSqlQuery query;
+       query.prepare("INSERT INTO ALERTE_GAZ (DATE_A) "
+                     "VALUES (:DATE_A)");
+       query.bindValue(":DATE_A",QDateTime::currentDateTime().toString());
+
+       query.exec();
+       ui->tableView_alerte->setModel(D.getAlertes());
+
+
+   }
+}
+
+void MainWindow::on_pushButton_9_clicked()
+{
+    w = new Chat(this);
+      w->show();
+}
+
+void MainWindow::on_n_pb_deco_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_n_pb_deco_9_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void MainWindow::on_n_pb_deco_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void MainWindow::on_n_pb_deco_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void MainWindow::on_n_pb_deco_2_clicked()
+{
+
+}
+
+void MainWindow::on_n_pb_deco_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void MainWindow::on_n_pb_deco_8_clicked()
+{
+
+}
+
+void MainWindow::on_n_pb_deco_7_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void MainWindow::on_n_pb_deco_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
+void MainWindow::on_combo_modif_activated(const QString &arg1)
+{
+    int ID = ui->combo_modif->currentText().toInt();
+     QString id_string= QString::number(ID);
+            QSqlQuery query;
+            query.prepare("select * from CONTRAT where ID_CONTRAT='"+id_string+"'");
+
+            if(query.exec()){
+
+                while(query.next())
+                {
+               ui->le_id->setText(query.value(0).toString());
+               ui->le_nom->setText(query.value(1).toString());
+                ui->le_prenom->setText(query.value(2).toString());
+                ui->le_email->setText(query.value(3).toString());
+                ui->date_lee->setDate(query.value(4).toDate());
+                 ui->le_cin->setText(query.value(5).toString());
+                 ui->le_numd->setText(query.value(6).toString());
+
+}}
+            else
+                QMessageBox::critical(nullptr, QObject::tr(" echoué"),
+                            QObject::tr("Erreur !.\n"
+                                        "Click Cancel to exit."), QMessageBox::Cancel);
+}
+
+void MainWindow::on_trang_2_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->label_48->setText("Refrence");
+                       ui->label_49->setText("Specie");
+                       ui->label_50->setText("Race");
+                       ui->label_51->setText("Name");
+                       ui->label_52->setText("Category");
+                       ui->label_53->setText("Quantity");
+                       ui->label_54->setText("Delay");
+                       ui->pb_modifier_2->setText("Modify");
+                       ui->pb_ajouter_2->setText("ADD");
+                       ui->pushButton_9->setText("Chat");
+                       ui->n_pb_deco->setText("LogOut");
+                       ui->pb_supprimer->setText("Delete");
+                       ui->trierrace->setText("Sort by race");
+                       ui->triercategorie->setText("Sort by category");
+                       ui->triernom->setText("Sort by name");
+                       ui->label_56->setText("Search");
+                       ui->label_55->setText("Refrence");
+                       ui->trfr_2->setText("Frensh");
+                       ui->trang_2->setText("English");
+}
+
+void MainWindow::on_trfr_2_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction francais ","Traduction francais",QSystemTrayIcon::Information,15000);
+    lng="fr";
+                       // page biblo
+
+    ui->label_48->setText("Refrence");
+    ui->label_49->setText("Espese");
+    ui->label_50->setText("Race");
+    ui->label_51->setText("Nom");
+    ui->label_52->setText("Categorie");
+    ui->label_53->setText("Quantite");
+    ui->label_54->setText("Delai");
+    ui->pb_modifier_2->setText("Modifier");
+    ui->pb_ajouter_2->setText("Ajouter");
+    ui->pushButton_9->setText("Chat");
+    ui->n_pb_deco->setText("Deconnexion");
+    ui->pb_supprimer->setText("Supprime");
+    ui->trierrace->setText("Tri par race");
+    ui->triercategorie->setText("Tri par categorie");
+    ui->triernom->setText("Tri par Nom");
+    ui->label_56->setText("Recherche");
+    ui->label_55->setText("Refrence");
+    ui->trfr_2->setText("Francais");
+    ui->trang_2->setText("Englais");
+}
+
+void MainWindow::on_trang_3_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->nom_2->setText("Name");
+                       ui->prenom_2->setText("First name");
+                       ui->id->setText("Contract id");
+                       ui->email->setText("Email");
+                       ui->datee->setText("Contract date");
+                       ui->cin_2->setText("NIC");
+                       ui->num->setText("File number");
+                       ui->pb_ajouter->setText("Add");
+                       ui->pb_modifier->setText("Modify");
+                       ui->pb_supp->setText("Delete");
+                       ui->tr1->setText("Sort by name");
+                       ui->tr2->setText("Sort by id");
+                       ui->tr3->setText("Sort by date");
+                       ui->cherche_li->setText("Search");
+                       ui->imprimer->setText("Print");
+                       ui->trfr->setText("Frensh");
+                       ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_3_clicked()
+{
+
+}
+
+void MainWindow::on_trang_4_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->nom_2->setText("Name");
+                       ui->prenom_2->setText("First name");
+                       ui->id->setText("Contract id");
+                       ui->email->setText("Email");
+                       ui->datee->setText("Contract date");
+                       ui->cin_2->setText("NIC");
+                       ui->num->setText("File number");
+                       ui->pb_ajouter->setText("Add");
+                       ui->pb_modifier->setText("Modify");
+                       ui->pb_supp->setText("Delete");
+                       ui->tr1->setText("Sort by name");
+                       ui->tr2->setText("Sort by id");
+                       ui->tr3->setText("Sort by date");
+                       ui->cherche_li->setText("Search");
+                       ui->imprimer->setText("Print");
+                       ui->trfr->setText("Frensh");
+                       ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_4_clicked()
+{
+
+}
+
+void MainWindow::on_trang_7_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->nom_2->setText("Name");
+                       ui->prenom_2->setText("First name");
+                       ui->id->setText("Contract id");
+                       ui->email->setText("Email");
+                       ui->datee->setText("Contract date");
+                       ui->cin_2->setText("NIC");
+                       ui->num->setText("File number");
+                       ui->pb_ajouter->setText("Add");
+                       ui->pb_modifier->setText("Modify");
+                       ui->pb_supp->setText("Delete");
+                       ui->tr1->setText("Sort by name");
+                       ui->tr2->setText("Sort by id");
+                       ui->tr3->setText("Sort by date");
+                       ui->cherche_li->setText("Search");
+                       ui->imprimer->setText("Print");
+                       ui->trfr->setText("Frensh");
+                       ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_7_clicked()
+{
+
+}
+
+void MainWindow::on_trang_6_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->nom_2->setText("Name");
+                       ui->prenom_2->setText("First name");
+                       ui->id->setText("Contract id");
+                       ui->email->setText("Email");
+                       ui->datee->setText("Contract date");
+                       ui->cin_2->setText("NIC");
+                       ui->num->setText("File number");
+                       ui->pb_ajouter->setText("Add");
+                       ui->pb_modifier->setText("Modify");
+                       ui->pb_supp->setText("Delete");
+                       ui->tr1->setText("Sort by name");
+                       ui->tr2->setText("Sort by id");
+                       ui->tr3->setText("Sort by date");
+                       ui->cherche_li->setText("Search");
+                       ui->imprimer->setText("Print");
+                       ui->trfr->setText("Frensh");
+                       ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_6_clicked()
+{
+
+}
+
+void MainWindow::on_trang_5_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->nom_2->setText("Name");
+                       ui->prenom_2->setText("First name");
+                       ui->id->setText("Contract id");
+                       ui->email->setText("Email");
+                       ui->datee->setText("Contract date");
+                       ui->cin_2->setText("NIC");
+                       ui->num->setText("File number");
+                       ui->pb_ajouter->setText("Add");
+                       ui->pb_modifier->setText("Modify");
+                       ui->pb_supp->setText("Delete");
+                       ui->tr1->setText("Sort by name");
+                       ui->tr2->setText("Sort by id");
+                       ui->tr3->setText("Sort by date");
+                       ui->cherche_li->setText("Search");
+                       ui->imprimer->setText("Print");
+                       ui->trfr->setText("Frensh");
+                       ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_5_clicked()
+{
+
+}
+
+void MainWindow::on_trang_9_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->nom_2->setText("Name");
+                       ui->prenom_2->setText("First name");
+                       ui->id->setText("Contract id");
+                       ui->email->setText("Email");
+                       ui->datee->setText("Contract date");
+                       ui->cin_2->setText("NIC");
+                       ui->num->setText("File number");
+                       ui->pb_ajouter->setText("Add");
+                       ui->pb_modifier->setText("Modify");
+                       ui->pb_supp->setText("Delete");
+                       ui->tr1->setText("Sort by name");
+                       ui->tr2->setText("Sort by id");
+                       ui->tr3->setText("Sort by date");
+                       ui->cherche_li->setText("Search");
+                       ui->imprimer->setText("Print");
+                       ui->trfr->setText("Frensh");
+                       ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_9_clicked()
+{
+
+}
+
+void MainWindow::on_trang_8_clicked()
+{
+    QString strStream;
+    QTextStream out(&strStream);
+QSystemTrayIcon *notifyIcon = new QSystemTrayIcon;
+
+    notifyIcon->show();
+    notifyIcon->setIcon(QIcon("icone.png"));
+
+    notifyIcon->showMessage("Traduction Anglais ","Traduction Anglais",QSystemTrayIcon::Information,15000);
+    lng="ANG";
+                       // page biblo
+
+                       ui->nom_2->setText("Name");
+                       ui->prenom_2->setText("First name");
+                       ui->id->setText("Contract id");
+                       ui->email->setText("Email");
+                       ui->datee->setText("Contract date");
+                       ui->cin_2->setText("NIC");
+                       ui->num->setText("File number");
+                       ui->pb_ajouter->setText("Add");
+                       ui->pb_modifier->setText("Modify");
+                       ui->pb_supp->setText("Delete");
+                       ui->tr1->setText("Sort by name");
+                       ui->tr2->setText("Sort by id");
+                       ui->tr3->setText("Sort by date");
+                       ui->cherche_li->setText("Search");
+                       ui->imprimer->setText("Print");
+                       ui->trfr->setText("Frensh");
+                       ui->trang->setText("English");
+}
+
+void MainWindow::on_trfr_8_clicked()
+{
+
 }

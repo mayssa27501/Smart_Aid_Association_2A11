@@ -28,8 +28,10 @@ CONFIG += c++11
 
 SOURCES += \
     DuMesengerConnectionDialog.cpp \
+    adherent.cpp \
     arduino.cpp \
     contrat.cpp \
+    donneur.cpp \
     dossier_medical.cpp \
     historique.cpp \
         main.cpp \
@@ -37,20 +39,24 @@ SOURCES += \
     connection.cpp \
     qrcodegen.cpp \
     ressourcehumaine.cpp \
+    stmp.cpp \
     stock.cpp \
     tresorie.cpp \
     chat.cpp
 
 HEADERS += \
     DuMesengerConnectionDialog.h \
+    adherent.h \
     arduino.h \
     contrat.h \
+    donneur.h \
     dossier_medical.h \
     historique.h \
         mainwindow.h \
     connection.h \
     qrcodegen.hpp \
     ressourcehumaine.h \
+    stmp.h \
     stock.h \
     tresorie.h \
     chat.h
@@ -73,4 +79,4 @@ DISTFILES += \
     img/Mon projet.jpg
 
 RESOURCES += \
-    ressource.qrc
+    resource.qrc
